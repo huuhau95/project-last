@@ -1,0 +1,13 @@
+// Fonts
+@import 'node_modules/font-awesome/scss/font-awesome.scss';
+@import 'node_modules/simple-line-icons/scss/simple-line-icons.scss';
+@import '~toastr/toastr.scss';
+// Variables
+@import 'variables';
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.navbar-laravel {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
