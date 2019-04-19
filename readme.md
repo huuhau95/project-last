@@ -1,4 +1,4 @@
-<h1>Project/h1>
+<h1>Project</h1>
 
 -------------------------------------------
 Install project
@@ -16,6 +16,5 @@ Run "php -S localhost:3000"
 
 Go to browser enter "http://localhost:3000/public/"
 ******************************************
-Started at : ?
-Done at : ?
+
 ******************************************
