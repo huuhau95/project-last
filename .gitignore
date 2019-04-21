@@ -1,10 +1,8 @@
 /node_modules
 /public/hot
 /public/ckeditor
-/public/js
 /public/storage
 /public/images/
-/public/fonts/
 /storage/*.key
 /vendor
 /.idea
