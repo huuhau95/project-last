@@ -21,12 +21,11 @@
     <script src="https://js.pusher.com/4.4/pusher.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
-    {{-- <link rel="stylesheet" href="{{ asset('admin_template/assets/css/themify-icons.css') }}"> --}}
 
     @yield('css')
 
 
-    {{-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'> --}}
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
 </head>
 <body>

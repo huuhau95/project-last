@@ -11,7 +11,7 @@ use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Images;
 use Illuminate\Support\Facades\Response;
-
+use DB;
 class ProductController extends Controller
 {
     protected $productModel;
@@ -33,7 +33,6 @@ class ProductController extends Controller
     public function index()
     {
         $categories = $this->categoryModel->all();
-
         return view('admin.product_list', compact('categories'));
     }
 
@@ -65,20 +64,27 @@ class ProductController extends Controller
             'discount' => $request->discount,
 
         ]);
-        //save image
-        $image = $request->file('image');
+                if($request->hasFile('image')) {
+                    if($product) {
+                        $ok = array();
+                        foreach ($request->image as $photo) {
 
-        $filename = $product->name . '_' . $image->getClientOriginalName();
+                            $filename = $product->name . '_' . $photo->getClientOriginalName();
 
-        $path = public_path(config('asset.image_path.product') . $filename);
-
-        Images::make($image->getRealPath())->resize(600, 600)->save($path);
-
-        $this->imageModel->create([
-            'name' => $filename,
-            'product_id' => $product->id,
-            'active' => 1,
-        ]);
+                            $path = public_path(config('asset.image_path.product') . $filename);
+                            Images::make($photo->getRealPath())->resize(600, 600)->save($path);
+                           $ok[] =  $this->imageModel->create([
+                                'name' => $filename,
+                                'product_id' => $product->id,
+                                'active' => 1,
+                            ]);
+                        }
+                        echo "Upload successfully";
+                    } else {
+                        echo "Falied to upload. Only accept jpg, png photos.";
+                    }
+                }
+        
     }
 
     /**

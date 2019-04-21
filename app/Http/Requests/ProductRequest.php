@@ -24,13 +24,13 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:200|unique:products,name,' . $this->route('product'),
-            'price' => 'required|numeric|min:0',
-            'quantity' => 'required|numeric|min:1',
-            'discount' => 'numeric|min:0|max:5',
-            'category_id' => 'required',
-            'image' => 'mimes:jpeg,jpg,png|image',
-            'brief' => 'required|max:200',
+            // 'name' => 'required|max:200|unique:products,name,' . $this->route('product'),
+            // 'price' => 'required|numeric|min:0',
+            // 'quantity' => 'required|numeric|min:1',
+            // 'discount' => 'numeric|min:0|max:5',
+            // 'category_id' => 'required',
+            // 'image' => 'mimes:jpeg,jpg,png|image',
+            // 'brief' => 'required|max:200',
         ];
     }
 
@@ -49,11 +49,11 @@ class ProductRequest extends FormRequest
             'quantity.numeric' => 'Quantity is number',
             'quantity.min' => 'Quantity is too small',
             'category_id.required' => 'Not choose cateogory',
-            'image.required' => 'Image is not empty',
-            'image.mimes' => 'Image is jpg, jpeg or png',
-            'image.image' => 'Not image',
-            'brief.required' => 'Brief is empty',
-            'brief.max' => 'Brief is too long',
+            // 'image.required' => 'Image is not empty',
+            // 'image.mimes' => 'Image is jpg, jpeg or png',
+            // 'image.image' => 'Not image',
+            // 'brief.required' => 'Brief is empty',
+            // 'brief.max' => 'Brief is too long',
         ];
     }
 }

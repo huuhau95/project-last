@@ -92,11 +92,15 @@
                             <div class="form-group">
                                 {!! Form::label('image', __('message.image'), ['class' => 'form-control-label']) !!}
                                 {!! Form::file('image', ['id' => 'image', 'class' => 'col-md-10',
-                                 'required' => 'required', ' id' => 'image']) !!}
+                                 'required' => 'required', ' id' => 'image', 'name'=> 'image[]', 'multiple']) !!}
                             </div>
                             <div class="form-group">
-                                {!! Form::label('category_id', __('message.category'), ['class' => 'form-control-label']) !!}
-                                {!! Form::select('category_id', [], null, ['class' => 'form-control col-md-10', 'required' => 'required', ' id' => 'category_id']) !!}
+                                <label for="category_id" class="form-control-label">Category</label>
+                                <select class="form-control col-md-10" required="required" id="category_id" name="category_id">
+                                     @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->name}}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
                         </div>
