@@ -1,8 +1,5 @@
 /node_modules
-/public/hot
-/public/ckeditor
 /public/storage
-/public/images/
 /storage/*.key
 /vendor
 /.idea
