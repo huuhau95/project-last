@@ -47,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
             $view->with(['categories' => $categories, 'sizes' => $sizes, 'toppings' => $toppings]);
         });
 
-        view()->composer('layouts/search_and_menu_client', function ($view) {
+        view()->composer('layouts/menu_client', function ($view) {
             $category = Category::with(['products'])->get()->map(function ($query) {
                 $query->setRelation('products', $query->products->take(4));
                 return $query;
