@@ -1,51 +1,33 @@
 @extends('layouts.app_client')
 @section('content')
 
-    <!-- HOME -->
-    <div id="home">
-        <!-- home wrap -->
-        <div class="home-wrap">
-            <!-- home slick -->
-            <div id="home-slick">
-                <!-- banner -->
-                <div class="banner banner-1">
-                    <img src="{{ asset('images/banner01.jpg') }}" alt="">
-                    <div class="banner-caption text-center">
-                        <h1>Bags sale</h1>
-                        <h3 class="white-color font-weak">Up to 50% Discount</h3>
-                        <button class="primary-btn">Shop Now</button>
-                    </div>
+<!-- HOME -->
+<div id="home">
+    <!-- home wrap -->
+    <div class="home-wrap">
+        <!-- home slick -->
+        <div id="home-slick">
+            @if($slides)
+            @foreach($slides as $slide)
+            <!-- banner -->
+            <div class="banner banner-1">
+                <img src="{{ asset(config('asset.image_path.slide')).'/'.$slide->image }}" alt="">
+                <div class="banner-caption text-center">
+                    <h1>Bags sale</h1>
+                    <h3 class="white-color font-weak">Up to 50% Discount</h3>
+                    <button class="primary-btn">Shop Now</button>
                 </div>
-                <!-- /banner -->
-
-                <!-- banner -->
-                <div class="banner banner-1">
-                    <img src="{{ asset('images/banner02.jpg') }}" alt="">
-                    <div class="banner-caption">
-                        <h1 class="primary-color">HOT DEAL<br><span class="white-color font-weak">Up to 50% OFF</span></h1>
-                        <button class="primary-btn">Shop Now</button>
-                    </div>
-                </div>
-                <!-- /banner -->
-
-                <!-- banner -->
-                <div class="banner banner-1">
-                    <img src="{{ asset('images/banner03.jpg') }}" alt="">
-                    <div class="banner-caption">
-                        <h1 class="white-color">New Product <span>Collection</span></h1>
-                        <button class="primary-btn">Shop Now</button>
-                    </div>
-                </div>
-                <!-- /banner -->
             </div>
-            <!-- /home slick -->
+            <!-- /banner -->
+            @endforeach
+            @endif
         </div>
         <!-- /home wrap -->
     </div>
     <!-- /HOME -->
 
 
-        <!-- section -->
+    <!-- section -->
     <div class="section">
         <!-- container -->
         <div class="container">
@@ -79,6 +61,8 @@
                     <div class="row">
                         <div id="product-slick-1" class="product-slick">
                             <!-- Product Single -->
+                            @if($products)
+                            @foreach($products as $product)
                             <div class="product product-single">
                                 <div class="product-thumb">
                                     <div class="product-label">
@@ -86,75 +70,32 @@
                                         <span class="sale">-20%</span>
                                     </div>
                                     <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                                    <img src="{{ asset('images/product01.jpg') }}" alt="">
+                                    <img src="{{ asset('images/products/' . $product->images[0]->name) }}" alt="">
                                 </div>
                                 <div class="product-body">
-                                    <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                                    <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
+                                     @if($product->discount)
+                                     <h3 class="product-price">{{ number_format($product->price * (1- $product->discount /100)) . ' ₫' }} <del class="product-old-price">{{ number_format($product->price) . ' ₫' }}</del></h3>
+                                     @else
+                                     <h3 class="product-price">{{ number_format($product->price) . ' ₫' }}</h3>
+                                     @endif
+
+                                    <h2 class="product-name"><a href="#">{{ $product->name }}</a></h2>
                                     <div class="product-btns">
                                         <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
+                            @endif
+                            <!-- /Product Single -->
+
                             <!-- /Product Single -->
 
                             <!-- Product Single -->
-                            <div class="product product-single">
-                                <div class="product-thumb">
-                                    <div class="product-label">
-                                        <span class="sale">-20%</span>
-                                    </div>
-                                    <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                                    <img src="{{ asset('images/product07.jpg') }}" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                                    <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                    <div class="product-btns">
-                                        <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
+
                             <!-- /Product Single -->
 
                             <!-- Product Single -->
-                            <div class="product product-single">
-                                <div class="product-thumb">
-                                    <div class="product-label">
-                                        <span>New</span>
-                                        <span class="sale">-20%</span>
-                                    </div>
-                                    <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                                    <img src="{{ asset('images/product06.jpg') }}" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                                    <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                    <div class="product-btns">
-                                        <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /Product Single -->
-
-                            <!-- Product Single -->
-                            <div class="product product-single">
-                                <div class="product-thumb">
-                                    <div class="product-label">
-                                        <span>New</span>
-                                        <span class="sale">-20%</span>
-                                    </div>
-                                    <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
-                                    <img src="{{ asset('images/product08.jpg') }}" alt="">
-                                </div>
-                                <div class="product-body">
-                                    <h3 class="product-price">$32.50 <del class="product-old-price">$45.00</del></h3>
-                                    <h2 class="product-name"><a href="#">Product Name Goes Here</a></h2>
-                                    <div class="product-btns">
-                                        <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
-                                    </div>
-                                </div>
-                            </div>
                             <!-- /Product Single -->
                         </div>
                     </div>
@@ -406,4 +347,4 @@
     </div>
     <!-- /section -->
 
-@endsection
+    @endsection

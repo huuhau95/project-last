@@ -5,6 +5,7 @@ return [
         'public' => 'images/',
         'avatar' => 'images/avatars/',
         'product' => 'images/products/',
+        'slide' => 'images/slides/',
         'category' => 'images/categories/',
         'logo' => 'images/framgia-logo.png',
         'default' => 'images/default.jpeg',

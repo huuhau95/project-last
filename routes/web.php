@@ -112,6 +112,19 @@ Route::group(['middleware' => 'locale'], function() {
             Route::get('json', 'CategoryController@getCategoryJson')->name('admin.category.json');
         });
 
+        Route::group(['prefix' => 'slide'], function () {
+             Route::get('show/{id}', 'SlideController@show')->name('admin.slide.show');
+            Route::get('index', 'SlideController@index')->name('admin.slide.index');
+
+            Route::post('store', 'SlideController@store')->name('admin.slide.store');
+
+            Route::post('update/{slide}', 'SlideController@update')->name('admin.slide.update');
+
+            Route::get('destroy/{id}', 'SlideController@destroy')->name('admin.slide.destroy');
+
+            Route::get('json', 'SlideController@getCategorySelect')->name('admin.slide.json');
+        });
+
         Route::group(['prefix' => 'topping'], function () {
 
             Route::get('json', 'TopingController@getDataJson')->name('admin.topping.json');

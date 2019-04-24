@@ -140,6 +140,7 @@ return [
 
     // Role
     'role' => 'Vai trò',
+    'slides' => 'Slides',
 
     // Category
     'category' => 'Loại',

@@ -10,13 +10,12 @@ use App\Order;
 use App\OrderDetail;
 use App\Product;
 use App\User;
+use App\Slide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
-use Redis;
-use Cache;
 use App\Repositories\Repository;
 
 class ClientController extends Controller
@@ -67,8 +66,8 @@ class ClientController extends Controller
         } else {
             $product_revent_view = [];
         }
-
-        return view('index', compact('products', 'best_discount_product', 'product_revent_view'));
+        $slides = Slide::get();
+        return view('index', compact('products', 'slides', 'best_discount_product', 'product_revent_view'));
     }
 
     public function liveSearch(Request $request)
@@ -102,9 +101,8 @@ class ClientController extends Controller
     {
         $product = Product::with('category')->with(['images' => function ($query) {
             $query->orderBy('active', 'desc')
-                ->orderBy('id', 'desc')->first();
+                ->orderBy('id', 'desc');
         }])->findOrFail($id);
-
         $products = Product::with('category')->with(['images' => function ($query) {
             $query->orderBy('active', 'desc')
                 ->orderBy('id', 'desc')->get();
