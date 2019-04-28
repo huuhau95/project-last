@@ -244,7 +244,7 @@ class UserController extends Controller
             return redirect()->route('admin.index');
         }
 
-        return back()->with('fail', 'User name or password not true !');
+        return back()->with('fail', 'Email hoặc mật khẩu không đúng !');
     }
 
     public function logoutAdmin()

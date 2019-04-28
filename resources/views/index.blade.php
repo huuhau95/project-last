@@ -67,9 +67,11 @@
                                 <div class="product-thumb">
                                     <div class="product-label">
                                         <span>New</span>
-                                        <span class="sale">-20%</span>
+                                         @if($product->discount)
+                                        <span class="sale">-{{ $product->discount }}%</span>
+                                        @endif
                                     </div>
-                                    <button class="main-btn quick-view"><i class="fa fa-search-plus"></i> Quick view</button>
+                                    <button class="main-btn quick-view"><i class="fa fa-search-plus"></i></button>
                                     <img src="{{ asset('images/products/' . $product->images[0]->name) }}" alt="">
                                 </div>
                                 <div class="product-body">
@@ -81,7 +83,7 @@
 
                                     <h2 class="product-name"><a href="#">{{ $product->name }}</a></h2>
                                     <div class="product-btns">
-                                        <button class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                        <a  href="{{ route('client.product.detail', ['id' => $product->id]) }}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Chi tiết</a>
                                     </div>
                                 </div>
                             </div>

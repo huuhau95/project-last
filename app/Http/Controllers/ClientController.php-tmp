@@ -27,7 +27,7 @@ class ClientController extends Controller {
 	}
 
 	public function changeLanguage($language) {
-		Session::put('website_language', $language);
+		Session::put('website_language', "vi");
 
 		return redirect()->back();
 	}
@@ -292,40 +292,22 @@ class ClientController extends Controller {
 				'status'      => 0,
 				'note'        => $request->note,
 			]);
-
 		foreach ($cart as $product) {
 			$orderDetail = $this->orderDetailModel->create([
 					'product_id'    => $product['item']['product']->id,
 					'product_price' => $product['item']['product_price'],
 					'order_id'      => $order->id,
-					'size_id'       => $product['item']['size']->id,
+					'size'          => $product['item']['size'],
+					'color'         => $product['item']['color'],
 					'quantity'      => $product['item']['quantity'],
 				]);
-
-			if ($product['item']['toppings']) {
-				foreach ($product['item']['toppings'] as $topping) {
-					$orderDetail->toppings()->attach($topping->id, [
-							'topping_price' => $topping->price,
-						]
-					);
-				}
-			}
 		}
-		//send mail
-		$order_new = Order::with(
-			['orderDetails.product'  => function ($query) {
-					$query->with(['images' => function ($query1) {
-								$query1->where('active', 1);
-							}]);
-				}]
-		)
-		->with('orderDetails.size')->with('orderDetails.toppings')
-		->where('id', '=', $order->id)
-		->orderBy('created_at', 'desc')
-		->first();
-
-		// Mail::send(new InforOrder($order_new, $request->email));
-
 		session()->put('status-cart', true);
+		Session::forget('cart');
+	}
+
+	public function showProductByCate(Request $request) {
+		$products = Product::where("category_id", $request->category_id)->get();
+		return view("product_list", compact('products', $products));
 	}
 }

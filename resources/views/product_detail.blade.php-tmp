@@ -45,36 +45,44 @@
                 </div>
                 <a href="#">3 Review(s) / Add Review</a>
               </div>
-              <p><strong>Brand:</strong> E-SHOP</p>
+              <p><strong>Brand:</strong> {{ $product->category->name }}</p>
               <p>{{ $product->description }}</p>
               <div class="product-options">
-                <ul class="size-option">
-                  <li><span class="text-uppercase">Size:</span></li>
-                  <li class="active"><a href="#">S</a></li>
-                  <li><a href="#">XL</a></li>
-                  <li><a href="#">SL</a></li>
-                </ul>
-                <ul class="color-option">
-                  <li><span class="text-uppercase">Color:</span></li>
-                  <li class="active"><a href="#" style="background-color:#475984;"></a></li>
-                  <li><a href="#" style="background-color:#8A2454;"></a></li>
-                  <li><a href="#" style="background-color:#BF6989;"></a></li>
-                  <li><a href="#" style="background-color:#9A54D8;"></a></li>
-                </ul>
+                <span class="text-uppercase">Size:</span>
+                <select name="size">
+                  <option value="XS" selected>XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="XL">XL</option>
+                  <option value="XXL">XXL</option>
+                </select>
+                <span class="text-uppercase">Color:</span>
+                <select name="color">
+                  <option value="Đỏ" selected>Đỏ</option>
+                  <option value="Trắng">Trắng</option>
+                  <option value="Vàng">Vàng</option>
+                  <option value="Xanh">Xanh</option>
+                  <option value="Đen">Đen</option>
+                </select>
               </div>
-
+              <form class="form_order" novalidate="novalidate" accept-charset="utf-8">
               <div class="product-btns">
                 <div class="qty-input">
                   <span class="text-uppercase">QTY: </span>
-                  <input class="input" type="number" disabled="" value="1">
+                  <input class="input" id="hidden_quantity" type="number" disabled="" value="1">
                 </div>
-                <button class="primary-btn add-to-cart btnBuy btn-car" data-id="{{ $product->id }}" data-toggle="modal"  href="#" data-target="#order" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                <input class="hidden" name="product" id="hidden_id" type="text"  value="{{ $product->id }}">
+                <input class="hidden" name="color" id="hidden_color" type="text"  value="red">
+                <input class="hidden" name="size" id="hidden_size" type="text"  value="s">
+                <button class="primary-btn btnSubmitOrder add-to-cart btn-car " data-id="{{ $product->id }}"   href="javascript::void(0)" type="button"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                 <div class="pull-right">
                   <button class="main-btn icon-btn"><i class="fa fa-heart"></i></button>
                   <button class="main-btn icon-btn"><i class="fa fa-exchange"></i></button>
                   <button class="main-btn icon-btn"><i class="fa fa-share-alt"></i></button>
                 </div>
               </div>
+              </form>
+
             </div>
           </div>
           <div class="col-md-12">

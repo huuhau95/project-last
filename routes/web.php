@@ -198,6 +198,7 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('cart-data', 'Cart1Controller@cart')->name('client.cart');
 
     Route::get('cart', 'ClientController@cart')->name('client.showCart');
+    Route::get('category/{category_id}', 'ClientController@showProductByCate')->name('client.showProductByCate');
 
     Route::post('cart-add', 'Cart1Controller@add')->name('user.cart.add');
 

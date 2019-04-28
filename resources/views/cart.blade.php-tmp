@@ -37,10 +37,10 @@
               </tr>
             </thead>
             <tbody>
-              <?php $total = 0; ?>
-              @foreach($carts as $cart)
-              <?php $total+= $cart['item']['product']->price * $cart['item']['quantity']; ?>
-              <tr>
+<?php $total = 0;?>
+@foreach($carts as $cart)
+<?php $total += $cart['item']['product']->price*$cart['item']['quantity'];?>
+<tr>
                 <td class="thumb"><img width="75"
                   src="{{ asset('images/products/' . $cart['item']['product']->image) }}"></td>
                   <td class="details">

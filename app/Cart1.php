@@ -13,35 +13,23 @@ class Cart1
         $this->cart = Session::get('cart', []);
     }
 
-    public function addProduct($product, $toppings, $size)
+    public function addProduct($product, $color, $size)
     {
-        $toppings_id_array = '';
-        $topping_current = [];
-        $toppings_price = 0;
-        if ($toppings) {
-            foreach ($toppings as $value) {
-                $topping = $value;
-                $topping->price_current = $value->price;
-                $topping_current[] = $topping;
-                $toppings_price += $value->price;
-                $toppings_id_array .= $value->id;
-            }
-        }
-        $key = implode('-', [$product->id, $size->id, $toppings_id_array]);
+
+        $key = implode('-', [$product->id, $size, $color]);
         $item_new = [
             'product' => $product,
             'quantity' => 1,
-            'toppings' => $topping_current,
             'size' => $size,
+            'color' => $color,
             'product_price' => $product->price,
             'product_discount' => $product->discount,
         ];
-        $item_new_price = $product->price * (1 + $size->percent) * (1 - $product->discount/100) + $toppings_price;
+        $item_new_price = $product->price  * (1 - $product->discount/100);
         if (empty($this->cart)) {
             $this->cart[] = [
                 'key' => $key,
                 'item' => $item_new,
-                'item_price' => $item_new_price,
             ];
         } else {
             $flat = false;
@@ -59,52 +47,21 @@ class Cart1
                 $this->cart[] = [
                     'key' => $key,
                     'item' => $item_new,
-                    'item_price' => $item_new_price,
                 ];
             }
         }
         Session::put('cart', $this->cart);
     }
 
-    public function reduce_quantity($keyCart) {
-        $item_price = 0;
-        $index = 0;
+    public function update_cart($keyCart, $quantity) {
         for ($i = 0; $i < count($this->cart); $i++) {
             if ($this->cart[$i]['key'] == $keyCart) {
-                $index = $i;
-                $this->cart[$i]['item_price'] = $this->cart[$i]['item_price']
-                    - ($this->cart[$i]['item']['product_price']
-                        * (1 + $this->cart[$i]['item']['size']->percent)
-                        * (1 - $this->cart[$i]['item']['product_discount']));
-                $this->cart[$i]['item']['quantity']--;
+                $this->cart[$i]['item']['quantity'] = $quantity;
             }
-            $item_price +=  $this->cart[$i]['item_price'];
         }
-
-        $this->cart[$index]['item_price'] = $item_price;
-
         Session::put('cart', $this->cart);
     }
 
-    public function increase_quantity($keyCart) {
-        $item_price = 0;
-        $index = 0;
-        for ($i = 0; $i < count($this->cart); $i++) {
-            if ($this->cart[$i]['key'] == $keyCart) {
-                $index = $i;
-                $this->cart[$i]['item_price'] = $this->cart[$i]['item_price']
-                    + ($this->cart[$i]['item']['product_price']
-                        * (1 + $this->cart[$i]['item']['size']->percent)
-                        * (1 - $this->cart[$i]['item']['product_discount']));
-                $this->cart[$i]['item']['quantity']++;
-            }
-            $item_price +=  $this->cart[$i]['item_price'];
-        }
-
-        $this->cart[$index]['item_price'] = $item_price;
-
-        Session::put('cart', $this->cart);
-    }
 
     public function removeItem($keyCart)
     {

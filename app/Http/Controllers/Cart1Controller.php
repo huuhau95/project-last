@@ -40,40 +40,29 @@ class Cart1Controller extends Controller
     public function add(Request $request)
     {
         $product = Product::findOrFail($request->product);
-
-        $size = Size::findOrFail($request->size);
-
-        if ($request->toppings) {
-            $toppings = Topping::findOrFail($request->toppings);
-        } else {
-            $toppings = null;
-        }
+        $size = $request->size;
+        $color = $request->color;
 
         $image_main = Image::where('product_id', $request->product)
             ->orderBy('active', 'desc')
             ->orderBy('id', 'desc')->first();
 
         $product->image = $image_main->name;
-
         $cart = new Cart1();
-
-        $cart->addProduct($product, $toppings, $size);
+        $cart->addProduct($product, $color, $size);
     }
 
     public function reduce_quantity(Request $request)
     {
         $cart = new Cart1();
-
         $cart->reduce_quantity($request->key);
-
         return redirect()->route('client.showCart');
     }
 
     public function increase_quantity(Request $request)
     {
         $cart = new Cart1();
-
-        $cart->increase_quantity($request->key);
+        $cart->update_cart($request->key, $request->quantity);
 
         return redirect()->route('client.showCart');
     }

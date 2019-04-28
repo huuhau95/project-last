@@ -20,8 +20,8 @@ class CreateOrderDetailsTable extends Migration
             $table->foreign('product_id')->references('id')->on('products');
             $table->unsignedInteger('order_id');
             $table->foreign('order_id')->references('id')->on('orders');
-            $table->unsignedInteger('size_id');
-            $table->foreign('size_id')->references('id')->on('sizes');
+            $table->string('size');
+            $table->string('color');
             $table->unsignedInteger('quantity');
             $table->timestamps();
             $table->softDeletes();

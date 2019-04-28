@@ -84,7 +84,7 @@ class ProductController extends Controller
                         echo "Falied to upload. Only accept jpg, png photos.";
                     }
                 }
-        
+
     }
 
     /**

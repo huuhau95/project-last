@@ -48,16 +48,6 @@
                         <i class="menu-icon fa fa-user"></i> {{ __('message.manager') }} {{ __('message.product') }}
                     </a>
                 </li>
-                <li>
-                    <a href="{{ route('admin.size.index') }}">
-                        <i class="menu-icon fa fa-user"></i> {{ __('message.manager') }} {{ __('message.size') }}
-                    </a>
-                </li>
-               <!--  <li>
-                    <a href="{{ route('admin.topping.index') }}">
-                        <i class="menu-icon fa fa-user"></i> {{ __('message.manager') }} {{ __('message.topping') }}
-                    </a>
-                </li> -->
 
                 <h3 class="menu-title">{{ __('message.order') }}</h3>
                 <li>

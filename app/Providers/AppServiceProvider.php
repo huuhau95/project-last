@@ -11,6 +11,7 @@ use App\Feedback;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Session;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -35,16 +36,12 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('index', function ($view) {
             $categories = Category::all();
-            $sizes = Size::all();
-            $toppings = Topping::all();
-            $view->with(['categories' => $categories, 'sizes' => $sizes, 'toppings' => $toppings]);
+            $view->with(['categories' => $categories]);
         });
 
         view()->composer('product_detail', function ($view) {
             $categories = Category::all();
-            $sizes = Size::all();
-            $toppings = Topping::all();
-            $view->with(['categories' => $categories, 'sizes' => $sizes, 'toppings' => $toppings]);
+            $view->with(['categories' => $categories]);
         });
 
         view()->composer('layouts/menu_client', function ($view) {
@@ -58,6 +55,15 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('filter', function ($view) {
             $categories = Category::all();
             $view->with('categories', $categories);
+        });
+
+        view()->composer('layouts/header_client', function ($view) {
+            if (Session::has('cart')) {
+                $cart = Session('cart');
+            }else{
+                $cart = [];
+            }
+            $view->with('cart', $cart);
         });
 
         view()->composer('cart', function ($view) {
