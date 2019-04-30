@@ -23,12 +23,12 @@
         @if(count($carts))
         <div class="order-summary clearfix">
           <div class="section-title">
-            <h3 class="title">Order Review</h3>
+            <h3 class="title">Thông tin sản phẩm đã mua</h3>
           </div>
           <table class="shopping-cart-table table">
             <thead>
               <tr>
-                <th>Product</th>
+                <th>Sản phẩm</th>
                 <th></th>
                 <th class="text-center">Giá</th>
                 <th class="text-center">Số lượng</th>
@@ -47,11 +47,11 @@
                     <a href="{{ route('client.product.detail', ['id' => $cart['item']['product']->id]) }}">{{ $cart['item']['product']->name }}</a>
                     <ul>
                       <li><span>Size: {{ $cart['item']['size'] }}</span></li>
-                      <li><span>Color: {{ $cart['item']['color'] }}</span></li>
+                      <li><span>Màu: {{ $cart['item']['color'] }}</span></li>
                     </ul>
                   </td>
                   <td class="price text-center"><strong>{{ number_format($cart['item']['product']->price) . ' ₫' }}</strong></td>
-                  <td class="qty text-center"><input data-id="{{ $cart['key'] }}" class="input" id="quantity" min="1" max="99" type="number" value="{{ $cart['item']['quantity'] }}"></td>
+                  <td class="qty text-center"><input data-id="{{ $cart['key'] }}" class="input quantity" min="1" max="99" type="number" value="{{ $cart['item']['quantity'] }}"></td>
                   <td class="total text-center"><strong class="primary-color">{{ number_format($cart['item']['product']->price * $cart['item']['quantity']) . ' ₫' }}</strong></td>
                   <td class="text-right">
                     <a href="{{ route('user.cart.delete', ['key' => $cart['key']]) }}"  class="main-btn icon-btn"  data-id="{{ $cart['key'] }}"><i class="fa fa-close"></i></a>
@@ -89,8 +89,7 @@
                 </div>
                 <div class="form-group">
                   <label for="receiver">Người nhận:</label>
-                  <input type="text" class="form-control" id="checkout-receiver" name="receiver"
-                  placeholder="Receirver">
+                  <input type="text" class="form-control" id="checkout-receiver" name="receiver" placeholder="Receirver">
                 </div>
                 <div class="form-group">
                   <label for="place">Địa điểm:</label>

@@ -33,15 +33,10 @@ class ClientController extends Controller {
 	}
 
 	public function index() {
-		$best_discount_product = Product::with(
-			['images' => function ($query) {
-					$query->where('active', 1)->get();
-				}]
-		)
-		->orderBy('discount', 'desc')
+		$best_sale_product = Product::where("selling", 1)
 		->orderBy('id', 'desc')
-		->first();
-
+		->take(4)
+		->get();
 		$products = Product::with(['images' => function ($query) {
 					$query->where('active', 1)->get();
 				}])
@@ -50,44 +45,19 @@ class ClientController extends Controller {
 		->get();
 
 		//recent view
-		$arr = Session::get('recent_view', []);
-
-		if ($arr) {
-			$product_revent_view = Product::with(['images' => function ($query) {
-						$query->where('active', 1)->get();
-					}])
-			->findOrFail(array_reverse($arr));
-			$product_revent_view = $product_revent_view->take(6);
-		} else {
-			$product_revent_view = [];
-		}
 		$slides = Slide::get();
-		return view('index', compact('products', 'slides', 'best_discount_product', 'product_revent_view'));
-	}
-
-	public function liveSearch(Request $request) {
-		$keyword = $request->keyword;
-		$data    = [];
-		if ($keyword != null) {
-			$data = Product::where('name', 'like', '%'.$keyword.'%')->limit(4)->get();
-		}
-
-		return $data;
+		return view('index', compact('products', 'slides', 'best_sale_product'));
 	}
 
 	public function search(Request $request) {
-		$keyword  = $request->keyword;
-		$category = null;
-		$products = [];
-		if ($keyword != null) {
-			$products = Product::where('name', 'like', '%'.$keyword.'%')->paginate(5);
+		$keyword  = $request->product;
+		$category = $request->category;
+		if ($category == 0) {
+			$products = Product::where('name', 'like', '%'.$keyword.'%')->paginate(12);
+		} else {
+			$products = Product::where('name', 'like', '%'.$keyword.'%')->where("category_id", $category)->paginate(12);
 		}
-
-		if ($request->ajax()) {
-			return view('product_list', ['products' => $products, 'keyword' => $keyword])->render();
-		}
-
-		return view('filter', compact('products'));
+		return view('product_list', compact('products'));
 	}
 
 	public function detailProduct($id) {
@@ -208,65 +178,6 @@ class ClientController extends Controller {
 		$user->role_id  = 3;
 		$user->save();
 	}
-
-	public function filter(Request $request) {
-		$category_id = $request->category_id;
-		$price       = $request->price;
-		$keyword     = $request->keyword;
-		$products    = Product::with(['images' => function ($query) {
-					$query->where('active', 1)->get();
-				}])->with('category')->orderBy('id', 'desc')
-		     ->when($category_id, function ($query, $category_id) {
-				return $category_id != 0?$query->where('category_id', '=', $category_id):$query->get();
-			})
-		->when($price, function ($query, $price) {
-				switch ($price) {
-					case 1:
-						{
-							$query->whereBetween('price', [0, 30000])->orderBy('price')->get();
-							break;
-						}
-					case 2:
-						{
-							$query->whereBetween('price', [30000, 50000])->orderBy('price')->get();
-							break;
-						}
-					case 3:
-						{
-							$query->whereBetween('price', [50000, 70000])->orderBy('price')->get();
-							break;
-						}
-					case 4:
-						{
-							$query->where('price', '>=', 70000)->get();
-							break;
-						}
-					default:
-						{
-							$query->get();
-						}
-				}
-			})
-		->when($keyword, function ($query, $keyword) {
-				$query->where('name', 'like', '%'.$keyword.'%')->get();
-			})
-		->paginate(6);
-
-		if ($request->ajax()) {
-			return view('product_list', ['products' => $products])->render();
-		}
-
-		return view('filter', compact('products'));
-	}
-
-	public function favorite(Request $request) {
-		$product = Product::findOrFail($request->id);
-
-		if (Auth::check()) {
-			Auth::user()->products()->attach($product);
-		}
-	}
-
 	public function checkout(CheckoutRequest $request) {
 		session()->forget('status-cart');
 
@@ -292,7 +203,9 @@ class ClientController extends Controller {
 				'status'      => 0,
 				'note'        => $request->note,
 			]);
+
 		foreach ($cart as $product) {
+
 			$orderDetail = $this->orderDetailModel->create([
 					'product_id'    => $product['item']['product']->id,
 					'product_price' => $product['item']['product_price'],
@@ -307,7 +220,9 @@ class ClientController extends Controller {
 	}
 
 	public function showProductByCate(Request $request) {
-		$products = Product::where("category_id", $request->category_id)->get();
+		$products = Product::where("category_id", $request->category_id)->paginate(9);
+		;
+
 		return view("product_list", compact('products', $products));
 	}
 }

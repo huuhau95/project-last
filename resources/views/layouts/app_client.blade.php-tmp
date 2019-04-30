@@ -33,8 +33,8 @@
 <body class="home cms-index-index cms-home-page">
     <div id="page">
         <!-- Header -->
-            @include('layouts.header_client')
-            @include('layouts.menu_client')
+        @include('layouts.header_client')
+        @include('layouts.menu_client')
         @yield('content')
         @include('layouts.footer_client')
     </div>
@@ -63,6 +63,7 @@
 
         $('.btnBuy').click(function (event) {
             event.preventDefault();
+            $('.modal-title').html("");
             var id_sp = $(this).attr("data-id");
             $.ajax({
                 url: route('client.product.detail.json', {id: id_sp}),
@@ -292,7 +293,7 @@
             }
         });
 
-        $('#quantity').on('blur change', function(event) {
+        $('.quantity').on('blur change', function(event) {
             event.preventDefault();
             var key = $(this).attr('data-id');
             var quantity = $(this).val();
@@ -339,7 +340,7 @@
                         timer: 3000,
                     });
                     $('#div-check-out').fadeOut();
-                    // window.location.replace({{ route("admin.index") }});
+                    window.location.href = route('client.index');
                 })
                 .fail(function (xhr, status, error) {
                     var err = JSON.parse(xhr.responseText);
@@ -378,25 +379,25 @@
             },
             messages: {
                 receiver:{
-                    required: 'Name is empty',
-                    maxlength: 'Name must smaller 100 character !',
+                    required: 'Không được để trống tên',
+                    maxlength: 'Tên lớn hơn 100 kí tự !',
                 },
                 email: {
-                    required: 'Email is empty',
-                    email: 'Email is wrong',
+                    required: 'Email không được để trống',
+                    email: 'Email không đúng định dạng',
                 },
                 place: {
-                    required: 'Place is empty',
-                    maxlength: 'Place must smaller 300 character',
+                    required: 'Địa chỉ không được trống',
+                    maxlength: 'Địa chỉ nhập không được quá 300 kí tự',
                 },
                 phone: {
-                    required: 'Phone is empty',
-                    number: 'Not a phone',
-                    maxlength: 'Phone too long',
-                    minlength: 'Phone too short',
+                    required: 'Số điện thoại không được để trống',
+                    number: 'Số điện thoại không phải là số',
+                    maxlength: 'Số điện thoại quá dài',
+                    minlength: 'Số điện thoại quá ngắn',
                 },
                 note: {
-                    maxlength: 'Note must smaller 300 character',
+                    maxlength: 'Ghi chú quá dài',
                 },
             },
         });

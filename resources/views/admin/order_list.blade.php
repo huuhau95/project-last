@@ -163,15 +163,9 @@
                             '<td width="15%">' +
                             '<img class="img-thumbnail" src="' + base_url_image + image + '">' +
                             '</td>' +
-                            '<td><p>' + element.product.name + '</p><p> Size: '+ element.size.name +'</p></td>' +
+                            '<td><p>' + element.product.name + '</p><p> Size: '+ element.size +'</p> Màu: '+ element.color +'</p></p> Số lượng: '+ element.quantity +'</p></td>' +
                             '<td width="44%">';
-                        var price = element.product_price;
-                        element.toppings.forEach(function (element) {
-                            html += '<span style="padding:5px;display: inline-block;background-color: #F0F8FF;border-radius: 10px;margin-left: 5px;margin-bottom: 5px">' +
-                                element.name +
-                                '</span>';
-                            price += element.pivot.topping_price;
-                        });
+                        var price = element.product_price * element.quantity;
                         html += '</td>' +
                             '<td width="20%"> Price: ' + nf.format(price) + ' ₫' + '</td>' +
                             '</tr>';

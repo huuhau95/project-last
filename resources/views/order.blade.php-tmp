@@ -138,6 +138,7 @@
                     $('#totals').empty();
                     $('#totals').append('<span style="color: red";font-weight: bold>Totals: </span>' + nf.format(totals) + ' ₫');
 
+
                 })
                 .fail(function () {
                     console.log("error");

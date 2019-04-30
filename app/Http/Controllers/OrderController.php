@@ -67,7 +67,7 @@ class OrderController extends Controller
     {
         $orderDetails = OrderDetail::with(['product.images' => function($query) {
             $query->where('active', 1)->get();
-        }])->with('size', 'toppings')
+        }])
         ->where('order_id', $id)
         ->get();
 

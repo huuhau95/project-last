@@ -29,7 +29,6 @@ class AppServiceProvider extends ServiceProvider
             if (Auth::check()) {
                 $data['currentUser'] = Auth::user();
                 $data['active'] = User::where('active', 0)->get();
-                $data['feedback'] = Feedback::where('status', 0)->with('user')->get();
                 $view->with('data', $data);
             }
         });
@@ -63,7 +62,8 @@ class AppServiceProvider extends ServiceProvider
             }else{
                 $cart = [];
             }
-            $view->with('cart', $cart);
+            $categories = Category::all();
+            $view->with(['cart'=>$cart, 'categories'=>$categories]);
         });
 
         view()->composer('cart', function ($view) {

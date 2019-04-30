@@ -31,11 +31,6 @@
                 <a href="{{ route('admin.slide.index') }}">
                         <i class="menu-icon fa fa-user"></i> {{ __('message.manager') }} {{ __('message.slides') }}</a>
                 </li>
-                <li>
-                    <a href="{{ route('admin.feedback.index')}}">
-                        <i class="menu-icon fa fa-user"></i> {{ __('message.manager') }} {{ __('message.feedback') }}
-                    </a>
-                </li>
 
                 <h3 class="menu-title"> {{ __('message.manager') }} {{ __('message.title.business') }}</h3>
                 <li>

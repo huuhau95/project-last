@@ -13,8 +13,9 @@ class OrderDetail extends Model
         'product_id',
         'product_price',
         'order_id' ,
-        'size_id',
+        'size',
         'quantity',
+        'color',
     ];
 
     protected $table = 'order_details';

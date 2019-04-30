@@ -11,7 +11,10 @@ use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManagerStatic as Images;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Http\Request;
 use DB;
+use File;
+
 class ProductController extends Controller
 {
     protected $productModel;
@@ -62,6 +65,7 @@ class ProductController extends Controller
             'brif' => $request->brif,
             'description' => $request->description,
             'discount' => $request->discount,
+            'selling' => $request->selling,
 
         ]);
                 if($request->hasFile('image')) {
@@ -79,9 +83,8 @@ class ProductController extends Controller
                                 'active' => 1,
                             ]);
                         }
-                        echo "Upload successfully";
                     } else {
-                        echo "Falied to upload. Only accept jpg, png photos.";
+                        die("Upload ảnh không thành công. Vui lòng thử lại.");
                     }
                 }
 
@@ -126,7 +129,7 @@ class ProductController extends Controller
             return Response::json(__('You are not admin'), 403);
         }
 
-        $this->productModel->update([
+        $product = $this->productModel->update([
             'name' => $request->name,
             'price' => $request->price,
             'quantity' => $request->quantity,
@@ -134,26 +137,26 @@ class ProductController extends Controller
             'brief' => $request->brief,
             'description' => $request->description,
             'discount' => $request->discount,
+            'selling' => $request->selling,
         ], $id);
 
-        $image = $request->file('image');
+        if($request->hasFile('image')) {
+            if($product) {
+            foreach ($request->image as $photo) {
+                $filename = $request->name . '_' . $photo->getClientOriginalName();
 
-        if ($image != null) {
-
-            $filename = $request->name . '_' . $image->getClientOriginalName();
-
-            $path = public_path('images/products/' . $filename);
-
-            Images::make($image->getRealPath())->resize(600, 600)->save($path);
-
-            $img = $this->imageModel->create([
-                'name' => $filename,
-                'product_id' => $id,
-                'active' => 1,
-            ]);
-
-            Image::where('product_id', '=', $id)->whereNotIn('id', [$img->id])->update(['active' => 0]);
-        }
+                $path = public_path(config('asset.image_path.product') . $filename);
+                Images::make($photo->getRealPath())->resize(600, 600)->save($path);
+                $img =  $this->imageModel->create([
+                        'name' => $filename,
+                        'product_id' => $id,
+                        'active' => 1,
+                ]);
+            }
+            } else {
+                die("Upload ảnh không thành công. Vui lòng thử lại.");
+            }
+         }
     }
 
     /**
@@ -185,5 +188,16 @@ class ProductController extends Controller
         $categories = Category::pluck('name', 'id');
 
         return Response::json($categories, 200);
+    }
+
+    public function destroy_image(Request $request){
+        $id = $request->data_id;
+        $image = Image::findOrFail($id);
+        $path = public_path('images/products/' . $image->name);
+        if (File::exists($path)) {
+             unlink($path);
+        }
+        $image->delete();
+        die(json_encode(array("status"=>true)));
     }
 }

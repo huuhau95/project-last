@@ -68,21 +68,6 @@ function () {
 						Route::get('active/{user}', 'UserController@active')->name('admin.user.active');
 					});
 
-				Route::group(['prefix' => 'feedback'], function () {
-
-						Route::get('index', 'FeedbackController@index')->name('admin.feedback.index');
-
-						Route::get('json', 'FeedbackController@json')->name('admin.feedback.json');
-
-						Route::get('edit/{id}', 'FeedbackController@edit')->name('admin.feedback.edit');
-
-						Route::get('active/{feedback}', 'FeedbackController@active')->name('admin.feedback.active');
-
-						Route::post('send_mail', 'FeedbackController@send')->name('admin.feedback.send_mail');
-
-						Route::post('update/{id}', 'FeedbackController@update')->name('admin.feedback.update');
-					});
-
 				Route::group(['prefix' => 'product'], function () {
 
 						Route::get('index', 'ProductController@index')->name('admin.product.index');
@@ -92,6 +77,8 @@ function () {
 						Route::post('store', 'ProductController@store')->name('admin.product.store');
 
 						Route::post('update/{product}', 'ProductController@update')->name('admin.product.update');
+
+						Route::post('destroy_image', 'ProductController@destroy_image')->name('admin.product.destroy_image');
 
 						Route::get('destroy/{id}', 'ProductController@destroy')->name('admin.product.destroy');
 
