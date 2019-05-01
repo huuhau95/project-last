@@ -51,9 +51,8 @@
                             <div class="product product-single">
                                 <div class="product-thumb">
                                     <div class="product-label">
-                                        <span>New</span>
-                                         @if($product->discount)
-                                        <span class="sale">-{{ $product->discount }}%</span>
+                                        @if($product->discount)
+                                        <span class="sale">{{ $product->discount }}%</span>
                                         @endif
                                     </div>
                                     <button onclick="location.href='{{ route('client.product.detail', ['id' => $product->id]) }}'" class="main-btn quick-view" tabindex="0"><i class="fa fa-search-plus"></i>Xem thêm</button>
@@ -105,7 +104,7 @@
                                 <div class="product-thumb">
                                     <div class="product-label">
                                          @if($product->discount)
-                                        <span class="sale">-{{ $product->discount }}%</span>
+                                        <span class="sale">{{ $product->discount }}%</span>
                                         @endif
                                     </div>
                                     <button onclick="location.href='{{ route('client.product.detail', ['id' => $product->id]) }}'" class="main-btn quick-view" tabindex="0"><i class="fa fa-search-plus"></i>Xem thêm</button>

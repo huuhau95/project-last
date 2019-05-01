@@ -95,7 +95,7 @@
                         </div>
                         <div class="form-group">
                          <div class="checkbox">
-                          <label><input type="checkbox" name="selling" class="selling" value="1">Sản phẩm bán chạy</label>
+                          <label><input type="checkbox" id="selling" name="selling" class="selling" value="1">Sản phẩm bán chạy</label>
                       </div>
                   </div>
               </div>
@@ -242,7 +242,11 @@
                 type: 'get',
                 url: route('admin.product.show', {id: id}),
                 success: function (data) {
-
+                    if(data.selling == 1){
+                        $("#selling").prop("checked", true);
+                    }else{
+                        $("#selling").prop('checked', false);
+                    }
                     $('#id').val(data.id);
                     $('#name').val(data.name);
                     $('#price').val(data.price);
