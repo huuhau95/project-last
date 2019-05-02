@@ -18,6 +18,7 @@ class ProductsTableSeeder extends Seeder
                 'name' => 'Trà ' . $i,
                 'price' => rand(10000, 40000),
                 'brief' => 'this is brief',
+                'selling' => 1,
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 2,
                 'quantity' => rand(50, 150),
@@ -28,6 +29,7 @@ class ProductsTableSeeder extends Seeder
                 'name' => 'Cafe ' . $i,
                 'price' => rand(10000, 40000),
                 'brief' => 'this is brief',
+                'selling' => 1,
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 1,
                 'quantity' => rand(50, 150),
@@ -40,6 +42,7 @@ class ProductsTableSeeder extends Seeder
                 'brief' => 'this is brief',
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 3,
+                'selling' => 1,
                 'quantity' => rand(50, 150),
             ];
         }
@@ -50,6 +53,7 @@ class ProductsTableSeeder extends Seeder
                 'brief' => 'this is brief',
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 4,
+                'selling' => 1,
                 'quantity' => rand(50, 150),
             ];
         }
@@ -66,6 +70,7 @@ class ProductsTableSeeder extends Seeder
         for ($i = 0; $i < $limit; $i++) {
             $data[] = [
                 'name' => 'trà sữa ' . $i,
+                'selling' => 1,
                 'price' => rand(10000, 40000),
                 'brief' => 'this is brief',
                 'description' => 'this is description' . rand(10000, 40000) . $i,

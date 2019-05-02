@@ -40,7 +40,7 @@ class ImagesTableSeeder extends Seeder
             '26.jpeg',
             '27.jpg'
         ];
-        for ($i = 1; $i <= 90; $i++) {
+        for ($i = 1; $i <= 150; $i++) {
             $data[] = [
                 'product_id' => $i,
                 'name' => $faker->randomElement($images),
