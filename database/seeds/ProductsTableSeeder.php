@@ -21,7 +21,7 @@ class ProductsTableSeeder extends Seeder
                 'selling' => 1,
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 2,
-                'quantity' => rand(50, 150),
+                'quantity' => rand(50, 100),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
@@ -32,7 +32,7 @@ class ProductsTableSeeder extends Seeder
                 'selling' => 1,
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 1,
-                'quantity' => rand(50, 150),
+                'quantity' => rand(50, 100),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
@@ -43,7 +43,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 3,
                 'selling' => 1,
-                'quantity' => rand(50, 150),
+                'quantity' => rand(50, 100),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
@@ -54,7 +54,7 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 4,
                 'selling' => 1,
-                'quantity' => rand(50, 150),
+                'quantity' => rand(50, 100),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
@@ -64,7 +64,7 @@ class ProductsTableSeeder extends Seeder
                 'brief' => 'this is brief',
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 5,
-                'quantity' => rand(50, 150),
+                'quantity' => rand(50, 100),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
@@ -75,7 +75,7 @@ class ProductsTableSeeder extends Seeder
                 'brief' => 'this is brief',
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 6,
-                'quantity' => rand(50, 150),
+                'quantity' => rand(50, 100),
             ];
         }
         DB::table('products')->insert($data);
