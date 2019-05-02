@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->float('discount')->default(0);
             $table->text('description');
             $table->unsignedInteger('category_id');
-            $table->unsignedTinyInteger('salling');
+            $table->unsignedTinyInteger('selling');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->unsignedInteger('quantity');
             $table->timestamps();
