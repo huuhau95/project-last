@@ -1,8 +1,6 @@
 <?php
-
 use Illuminate\Database\Seeder;
 use App\Category;
-
 class ProductsTableSeeder extends Seeder
 {
     /**
@@ -15,67 +13,68 @@ class ProductsTableSeeder extends Seeder
         $limit = 15;
         for ($i = 0; $i < $limit; $i++) {
             $data[] = [
-                'name' => 'Trà ' . $i,
+                'name' => 'Quan ao nu ' . $i,
                 'price' => rand(10000, 40000),
                 'brief' => 'this is brief',
-                'selling' => 1,
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 2,
-                'quantity' => rand(50, 100),
+                'selling' => 1,
+                'quantity' => rand(50, 150),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
             $data[] = [
-                'name' => 'Cafe ' . $i,
+                'name' => 'Quan ao nam ' . $i,
                 'price' => rand(10000, 40000),
                 'brief' => 'this is brief',
-                'selling' => 1,
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 1,
-                'quantity' => rand(50, 100),
+                'selling' => 1,
+                'quantity' => rand(50, 150),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
             $data[] = [
-                'name' => 'Soda - Daxo ' . $i,
+                'name' => 'Giay dep nu ' . $i,
                 'price' => rand(10000, 40000),
                 'brief' => 'this is brief',
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 3,
                 'selling' => 1,
-                'quantity' => rand(50, 100),
+                'quantity' => rand(50, 150),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
             $data[] = [
-                'name' => 'Soda - Mizito ' . $i,
+                'name' => 'Giay dep nam ' . $i,
                 'price' => rand(10000, 40000),
                 'brief' => 'this is brief',
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 4,
                 'selling' => 1,
-                'quantity' => rand(50, 100),
+                'quantity' => rand(50, 150),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
             $data[] = [
-                'name' => 'nước ép ' . $i,
+                'name' => 'Vi nam ' . $i,
                 'price' => rand(10000, 40000),
                 'brief' => 'this is brief',
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 5,
-                'quantity' => rand(50, 100),
+                'selling' => 1,
+                'quantity' => rand(50, 150),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
             $data[] = [
-                'name' => 'trà sữa ' . $i,
-                'selling' => 1,
+                'name' => 'Tui xach nu ' . $i,
                 'price' => rand(10000, 40000),
                 'brief' => 'this is brief',
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 6,
-                'quantity' => rand(50, 100),
+                'selling' => 1,
+                'quantity' => rand(50, 150),
             ];
         }
         DB::table('products')->insert($data);

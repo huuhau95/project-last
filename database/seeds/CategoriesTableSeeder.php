@@ -13,26 +13,25 @@ class CategoriesTableSeeder extends Seeder
     {
         $data = [
             [
-                'name' => 'Cafe',
-                'image'=> 'coffee.svg',
+                'name' => 'Quan ao nu',
+                'image'=> 'banner04.jpg',
             ], [
-                'name' => 'Trà',
-                'image'=> 'coffee-cup.svg',
+                'name' => 'Quan ao nam',
+                'image'=> 'banner04.jpg',
             ], [
-                'name' => 'Sinh Tố',
-                'image'=> 'frappe.svg',
+                'name' => 'Giay dep nu',
+                'image'=> 'banner04.jpg',
             ], [
-                'name' => 'Soda - Mojito',
-                'image'=> 'mocha.svg',
+                'name' => 'Giay dep nam',
+                'image'=> 'banner06.jpg',
             ], [
-                'name' => 'Nước Ép',
-                'image'=> 'takeaway.svg',
+                'name' => 'Vi nam',
+                'image'=> 'banner07.jpg',
             ], [
-                'name' => 'Đồ Đá Xay',
-                'image'=> 'tea-cup.svg',
+                'name' => 'Tui xach nu',
+                'image'=> 'banner12.jpg',
             ],
         ];
-
         DB::table('categories')->insert($data);
     }
 }
