@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Feedback;
 use App\Http\Requests\CheckoutRequest;
 use App\Http\Requests\Client_UserRequest;
 use App\Mail\InforOrder;
@@ -79,7 +78,6 @@ class ClientController extends Controller
             ->whereNotIn('id', [$product->id])
             ->limit(3)->get();
 
-        $feedback = Feedback::where('product_id', $id)->with('user')->get();
 
         //revent_view
         $arr = Session::get('recent_view', []);
@@ -92,7 +90,7 @@ class ClientController extends Controller
 
         Session::put('recent_view', $arr);
 
-        return view('product_detail', compact('product', 'feedback', 'products'));
+        return view('product_detail', compact('product', 'products'));
     }
 
     public function detailProductData($id)
