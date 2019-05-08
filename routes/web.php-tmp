@@ -110,7 +110,13 @@ function () {
 
 						Route::get('destroy/{id}', 'SlideController@destroy')->name('admin.slide.destroy');
 
-						Route::get('json', 'SlideController@getCategorySelect')->name('admin.slide.json');
+					});
+
+				Route::group(['prefix' => 'contact'], function () {
+						Route::get('show/{id}', 'ContactController@show')->name('admin.contact.show');
+						Route::get('index', 'ContactController@index')->name('admin.contact.index');
+						Route::get('destroy/{id}', 'ContactController@destroy')->name('admin.contact.destroy');
+						Route::get('json', 'ContactController@getCategorySelect')->name('admin.contact.json');
 					});
 
 				Route::group(['prefix' => 'topping'], function () {
@@ -199,6 +205,10 @@ function () {
 		Route::get('cart-remove-all', 'Cart1Controller@removeAll')->name('user.cart.remove');
 
 		Route::post('client-feedback', 'FeedbackController@store')->name('feedback.store');
+
+		Route::get('contact', 'ClientController@getContact')->name('user.contact.get');
+
+		Route::post('contact', 'ClientController@postContact')->name('user.contact.post');
 
 		Route::get('order', 'ClientController@orders')->name('client.orders');
 

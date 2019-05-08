@@ -27,9 +27,14 @@
                     <a href="{{ route('admin.role.index') }}">
                         <i class="menu-icon fa fa-user"></i> {{ __('message.manager') }} {{ __('message.role') }}</a>
                 </li>
-                 <li>
+                <li>
                 <a href="{{ route('admin.slide.index') }}">
                         <i class="menu-icon fa fa-user"></i> {{ __('message.manager') }} {{ __('message.slides') }}</a>
+                </li>
+
+            <li>
+                <a href="{{ route('admin.contact.index') }}">
+                        <i class="menu-icon fa fa-user"></i> Liên Hệ</a>
                 </li>
 
                 <h3 class="menu-title"> {{ __('message.manager') }} {{ __('message.title.business') }}</h3>

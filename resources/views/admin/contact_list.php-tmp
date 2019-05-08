@@ -178,7 +178,7 @@
                         if (xhr.status == 403) {
                             toastr.error(err, 'Error!');
                         }
-                        else { 
+                        else {
                             var errors = Object.entries(err.errors);
                             errors.forEach(function (value, index) {
                                 toastr.error(value[1][0], 'Error!');

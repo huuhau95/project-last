@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Contact;
 use App\Http\Requests\CheckoutRequest;
 use App\Http\Requests\Client_UserRequest;
 
@@ -221,5 +222,14 @@ class ClientController extends Controller {
 		;
 
 		return view("product_list", compact('products', $products));
+	}
+
+	public function getContact() {
+		return view("contact");
+	}
+
+	public function postContact(Request $request) {
+		$contact = Contact::create($request->all());
+		return redirect()->back()->with('success', 'Cảm ơn bạn đã đóng góp ý kiến. Chúng tôi sẽ liên hệ với bạn sớm nhất');
 	}
 }

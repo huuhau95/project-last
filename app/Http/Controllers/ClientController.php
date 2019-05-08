@@ -9,6 +9,7 @@ use App\Order;
 use App\OrderDetail;
 use App\Product;
 use App\User;
+use App\Contact;
 use App\Slide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -238,5 +239,14 @@ class ClientController extends Controller
     public function showProductByCate(Request $request){
         $products = Product::where("category_id", $request->category_id)->paginate(9);;
         return view("product_list", compact('products', $products));
+    }
+
+    public function getContact(){
+        return view("contact");
+    }
+
+    public function postContact (Request $request){
+        $contact = Contact::create($request->all());
+        return redirect()->back()->with('success', 'Cảm ơn bạn đã đóng góp ý kiến. Chúng tôi sẽ liên hệ với bạn sớm nhất');
     }
 }
