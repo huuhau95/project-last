@@ -4,10 +4,6 @@
         {{-- <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a> --}}
         <div class="header-left">
             <div class="dropdown for-notification">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-user"></i>
-                    <span class="count bg-danger" data-count="{{ count($data['active']) }}" id="count_user">{{ count($data['active']) }}</span>
-                </button>
                 <div class="dropdown-menu append_active" aria-labelledby="notification">
                     @foreach ($data['active'] as $d)
                         <div class="dropdown-item active_item" data-id="{{ $d->id }}">
@@ -40,33 +36,6 @@
                 </a>
                 <a class="nav-link" href="{{ route('admin.logout') }}"><i class="fa fa-power -off"></i>Logout</a>
             </div>
-        </div>
-        <div class="language-select dropdown" id="language-select">
-            @if(Session::get('website_language') == 'vi')
-                <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="language" aria-haspopup="true" aria-expanded="true">
-                    {{-- <i class="flag-icon flag-icon-vn"></i> --}}
-                    <img src="{{ asset('images/vn_flat.png') }}" class="img-fluid">
-                </a>
-                <div class="dropdown-menu" aria-labelledby="language" >
-                    <div class="dropdown-item">
-                        <a href="{{ route('user.change-language', ['en']) }}">
-                            <img src="{{ asset('images/en_flat.png') }}" class="img-fluid">
-                        </a>
-                    </div>
-                </div>
-            @else
-                <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="language" aria-haspopup="true" aria-expanded="true">
-                    {{-- <i class="flag-icon flag-icon-vn"></i> --}}
-                    <img src="{{ asset('images/en_flat.png') }}" class="img-fluid">
-                </a>
-                <div class="dropdown-menu" aria-labelledby="language" >
-                    <div class="dropdown-item">
-                        <a href="{{ route('user.change-language', ['vi']) }}">
-                            <img src="{{ asset('images/vn_flat.png') }}" class="img-fluid">
-                        </a>
-                    </div>
-                </div>
-            @endif
         </div>
     </div>
 </div>

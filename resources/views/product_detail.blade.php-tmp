@@ -35,7 +35,7 @@
               <div>
               </div>
               <p><strong>Loại sản phẩm:</strong> {{ $product->category->name }}</p>
-              <p>{{ $product->description }}</p>
+              <p>{{ $product->brief }}</p>
               <form class="form_order" novalidate="novalidate" accept-charset="utf-8">
               <div class="product-options">
                 <span class="text-uppercase">Size:</span>
@@ -75,12 +75,11 @@
               </ul>
               <div class="tab-content">
                 <div id="tab1" class="tab-pane fade in active">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  <p>{{ $product->brief }}</p>
                 </div>
 
                 <div id="tab2" class="tab-pane fade in">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  <p>{{ $product->description }}
                  </p>
                 </div>
 

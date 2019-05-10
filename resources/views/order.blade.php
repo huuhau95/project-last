@@ -4,8 +4,8 @@
         <div class="main container">
             <div class="col-main">
                 <div class="cart wow bounceInUp animated">
-                    <div class="page-title">
-                        <h2>{{ __('message.order') }}</h2>
+                    <div class="page-title" style="text-align: center; margin: 5% 0">
+                        <h2>Lịch sử mua hàng của tôi</h2>
                     </div>
                     @if(count($orders))
                     <table class="table table-bordered" id="order_list">
@@ -54,7 +54,7 @@
                     </table>
                     {!! $orders->appends(request()->input())->links() !!}
                     @else
-                        <h3>Bạn không có đơn hàng nào</h3>
+                        <h3 style="text-align: center; margin: 5% 0">Bạn không có đơn hàng nào</h3>
                     @endif
                 </div>
             </div>

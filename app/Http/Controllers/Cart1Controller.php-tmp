@@ -55,6 +55,9 @@ class Cart1Controller extends Controller {
 
 	public function increase_quantity(Request $request) {
 		$cart = new Cart1();
+		if ($request->quantity <= 0) {
+			$request->quantity = 1;
+		}
 		$cart->update_cart($request->key, $request->quantity);
 
 		return redirect()->route('client.showCart');
