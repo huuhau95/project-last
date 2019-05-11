@@ -17,7 +17,8 @@
                         <i class="menu-icon fa fa-dashboard"></i>{{ __('message.title.dashboard') }}
                     </a>
                 </li>
-
+            @if (Auth::user()->role_id == 1) {
+                
                 <h3 class="menu-title"> {{ __('message.manager') }} {{ __('message.title.system') }}</h3>
                 <li>
                     <a href="{{ route('admin.user.index') }}">
@@ -31,12 +32,10 @@
                 <a href="{{ route('admin.slide.index') }}">
                         <i class="menu-icon fa fa-user"></i> {{ __('message.manager') }} {{ __('message.slides') }}</a>
                 </li>
-
             <li>
                 <a href="{{ route('admin.contact.index') }}">
                         <i class="menu-icon fa fa-user"></i> Liên Hệ</a>
                 </li>
-
                 <h3 class="menu-title"> {{ __('message.manager') }} {{ __('message.title.business') }}</h3>
                 <li>
                     <a href="{{ route('admin.category.index') }}">
@@ -48,7 +47,8 @@
                         <i class="menu-icon fa fa-user"></i> {{ __('message.manager') }} {{ __('message.product') }}
                     </a>
                 </li>
-
+            @endif
+    
                 <h3 class="menu-title">{{ __('message.order') }}</h3>
                 <li>
                     <a href="{{ route('admin.order.index') }}">

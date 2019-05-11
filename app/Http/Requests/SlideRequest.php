@@ -25,7 +25,7 @@ class SlideRequest extends FormRequest
     {
         return [
             'name' => 'required|max:200|unique:slides,name,' . $this->route('slide'),
-            'image' => 'mimes:jpeg,jpg,png|image',
+            'image' => 'required|mimes:jpeg,jpg,png|image',
         ];
     }
 

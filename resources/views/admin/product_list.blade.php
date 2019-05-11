@@ -111,7 +111,7 @@
                 <div class="form-group">
                     {!! Form::label('brief', __('message.brief'), ['class' => 'form-control-label']) !!}
                     {!! Form::textarea('brief', null, ['class' => 'form-control col-md-10',
-                    'required' => 'required', ' id' => 'name', 'placeholder' => 'Brief',
+                    'required' => 'required', ' id' => 'brief', 'placeholder' => 'Brief',
                     'autocomplete' => 'off']) !!}
                 </div>
 
@@ -231,6 +231,7 @@
 
         $('#admin_product_list tbody').on('click', '#btnUpdateProduct', function () {
             $('#form-group-id').show();
+            $( "#image" ).val("")
             $(".img-fluid").html("");
             $('#action').val('Update');
             var row = $(this).closest('tr');
@@ -251,6 +252,7 @@
                     $('#discount').val(data.discount);
                     $('#quantity').val(data.quantity);
                     $('#category_id').val(data.category_id);
+                    $('#brief').val(data.brief);
                     CKEDITOR.instances['description'].setData(data.description);
                     if(data.images.length > 0){
                         for (var i = 0; i <= data.images.length; i++) {

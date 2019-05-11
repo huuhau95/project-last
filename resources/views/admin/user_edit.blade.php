@@ -30,12 +30,7 @@
                             <div class="location text-sm-center"><i class="fa fa-map-marker"></i> {{ $user->address }}</div>
                         </div>
                         <hr>
-                        <div class="card-text text-sm-center">
-                            <a href="#"><i class="fa fa-facebook pr-1"></i></a>
-                            <a href="#"><i class="fa fa-twitter pr-1"></i></a>
-                            <a href="#"><i class="fa fa-linkedin pr-1"></i></a>
-                            <a href="#"><i class="fa fa-pinterest pr-1"></i></a>
-                        </div>
+                     
                     </div>
                 </div>
             </div>
@@ -88,13 +83,13 @@
                         <div class="form-group row">
                             {!! Form::label('password', __('New password'), ['class' => 'col-sm-3 col-form-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::password('password', ['class' => 'form-control']) !!}
+                                {!! Form::password('password', ['class' => 'form-control', 'required' => 'required']) !!}
                             </div>
                         </div>
                         <div class="form-group row">
                             {!! Form::label('re_password', __('Re-password'), ['class' => 'col-sm-3 col-form-label']) !!}
                             <div class="col-sm-9">
-                                {!! Form::password('re_password', ['class' => 'form-control']) !!}
+                                {!! Form::password('re_password', ['class' => 'form-control', 'required' => 'required']) !!}
                             </div>
                         </div>
                     </div>
@@ -153,8 +148,13 @@ $(document).ready(function() {
 
     $('.btnSubmit').click(function(event) {
         event.preventDefault();
-
+        if ($("#password").val()=='' || $("#re_password").val()=='') {
+            toastr.error('Mật khẩu và nhập lại mật khẩu là bắt buộc ', 'Error!');
+        }else if($("#password").val() != $("#re_password").val()){
+             toastr.error('Mật khẩu và nhập lại mật khẩu không khớp ', 'Error!');
+        }else{
         funtionAjax();
+        }
     });
 });
 

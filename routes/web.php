@@ -109,7 +109,7 @@ Route::group(['middleware' => 'locale'], function() {
             Route::post('update/{slide}', 'SlideController@update')->name('admin.slide.update');
 
             Route::get('destroy/{id}', 'SlideController@destroy')->name('admin.slide.destroy');
-
+            Route::get('json', 'SlideController@getCategorySelect')->name('admin.slide.json');
 
         });
 
