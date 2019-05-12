@@ -26,7 +26,7 @@
           @endforeach
         </div>
         <div class="modal-footer">
-          <button type="submit" id="btnSubmitOrder" class="btn btn-primary btnSubmitOrder">Đặt hàng</button>
+          <button type="submit" id="btnSubmitOrder" class="btn btn-primary btnSubmitOrder">Thêm vào giỏ hàng</button>
           <button type="button" data-dismiss="modal" class="btn btn-danger">Hủy bỏ</button>
         </div>
       </form>

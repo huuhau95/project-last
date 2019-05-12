@@ -17,7 +17,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => rand(10000, 40000),
                 'brief' => 'this is brief',
                 'description' => 'this is description' . rand(10000, 40000) . $i,
-                'category_id' => 2,
+                'category_id' => 1,
                 'selling' => 1,
                 'quantity' => rand(50, 150),
             ];
@@ -28,7 +28,7 @@ class ProductsTableSeeder extends Seeder
                 'price' => rand(10000, 40000),
                 'brief' => 'this is brief',
                 'description' => 'this is description' . rand(10000, 40000) . $i,
-                'category_id' => 1,
+                'category_id' => 2,
                 'selling' => 1,
                 'quantity' => rand(50, 150),
             ];

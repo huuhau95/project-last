@@ -33,6 +33,7 @@
                   </div>
                 </div>
               </li>
+              <li><a href="{{ route('user.contact.get') }}">Liên hệ</a></li>
             </ul>
           </div>
           <!-- menu nav -->

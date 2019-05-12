@@ -48,6 +48,13 @@
                             <!-- Product Single -->
                             @if($products)
                             @foreach($products as $product)
+                             <?php
+                                        if(empty($product->images[0])){
+                                             $images_default = "default.png";
+                                        }else{
+                                             $images_default = $product->images[0]->name;
+                                        }
+                                    ?>
                             <div class="product product-single">
                                 <div class="product-thumb">
                                     <div class="product-label">
@@ -56,7 +63,7 @@
                                         @endif
                                     </div>
                                     <button onclick="location.href='{{ route('client.product.detail', ['id' => $product->id]) }}'" class="main-btn quick-view" tabindex="0"><i class="fa fa-search-plus"></i>Xem thêm</button>
-                                    <img src="{{ asset('images/products/' . $product->images[0]->name) }}" alt="">
+                                    <img src="{{ asset('images/products/' .  $images_default) }}" alt="">
                                 </div>
                                 <div class="product-body">
                                      @if($product->discount)
@@ -107,8 +114,15 @@
                                         <span class="sale">{{ $product->discount }}%</span>
                                         @endif
                                     </div>
+                                    <?php
+                                        if(empty($product->images[0])){
+                                             $images_default = "default.png";
+                                        }else{
+                                             $images_default = $product->images[0]->name;
+                                        }
+                                    ?>
                                     <button onclick="location.href='{{ route('client.product.detail', ['id' => $product->id]) }}'" class="main-btn quick-view" tabindex="0"><i class="fa fa-search-plus"></i>Xem thêm</button>
-                                    <img src="{{ asset('images/products/' . $product->images[0]->name) }}" alt="">
+                                    <img src="{{ asset('images/products/' .  $images_default) }}" alt="">
                                 </div>
                                 <div class="product-body">
                                      @if($product->discount)

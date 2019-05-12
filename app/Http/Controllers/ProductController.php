@@ -62,7 +62,7 @@ class ProductController extends Controller
             'price' => $request->price,
             'quantity' => $request->quantity,
             'category_id' => $request->category_id,
-            'brif' => $request->brif,
+            'brief' => $request->brief,
             'description' => $request->description,
             'discount' => $request->discount,
             'selling' => $request->selling,
@@ -70,14 +70,13 @@ class ProductController extends Controller
         ]);
                 if($request->hasFile('image')) {
                     if($product) {
-                        $ok = array();
                         foreach ($request->image as $photo) {
 
                             $filename = $product->name . '_' . $photo->getClientOriginalName();
 
                             $path = public_path(config('asset.image_path.product') . $filename);
                             Images::make($photo->getRealPath())->resize(600, 600)->save($path);
-                           $ok[] =  $this->imageModel->create([
+                            $this->imageModel->create([
                                 'name' => $filename,
                                 'product_id' => $product->id,
                                 'active' => 1,
@@ -105,16 +104,6 @@ class ProductController extends Controller
         return response($product, 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -126,7 +115,7 @@ class ProductController extends Controller
     public function update(ProductRequest $request, $id)
     {
         if (Auth::user()->role_id == 2) {
-            return Response::json(__('You are not admin'), 403);
+            return Response::json(__('Bạn không phải admin'), 403);
         }
 
         $product = $this->productModel->update([
@@ -168,7 +157,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         if (Auth::user()->role_id == 2) {
-            return Response::json(__('You are not admin'), 403);
+            return Response::json(__('Bạn không phải admin'), 403);
         }
 
        $this->productModel->delete($id);

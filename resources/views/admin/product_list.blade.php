@@ -246,6 +246,7 @@
                     }else{
                         $("#selling").prop('checked', false);
                     }
+                    console.log(data)
                     $('#id').val(data.id);
                     $('#name').val(data.name);
                     $('#price').val(data.price);

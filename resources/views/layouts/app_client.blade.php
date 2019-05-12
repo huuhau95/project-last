@@ -109,7 +109,7 @@
                 })
                 .done(function () {
                     swal({
-                        title: "Mua hàng thành công",
+                        title: "Đã thêm vào giỏ hàng",
                         icon: "success",
                         timer: 2000,
                     });

@@ -69,7 +69,7 @@
                     <!-- Search -->
                     <div class="header-search">
                         <form action="{{ route('client.search') }}" method="GET">
-                            <input required="required" class="input search-input" type="text" name="product" placeholder="Nhập vào từ khóa tìm kiếm.....">
+                            <input class="input search-input" type="text" name="product" placeholder="Nhập vào từ khóa tìm kiếm.....">
                             <select class="input search-categories" name="category">
                                 <option value="0">Tất cả danh mục</option>
                                 @if($categories)

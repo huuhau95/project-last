@@ -27,6 +27,7 @@ Route::group(['middleware' => 'locale'], function() {
 
     Route::get('logout', 'UserController@logoutUser')->name('logout');
 
+// route admin
     Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
         Route::get('index', 'HomeController@index')->name('admin.index');
@@ -163,6 +164,7 @@ Route::group(['middleware' => 'locale'], function() {
             Route::post('change-status', 'OrderController@changStatus')->name('admin.order.change_status');
         });
     });
+//end admin
 
     Route::group(['prefix' => 'user', 'middleware' => 'userLogin'], function () {
 
