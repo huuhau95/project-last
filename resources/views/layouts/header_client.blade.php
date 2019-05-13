@@ -12,7 +12,7 @@
           <li>
             <a title="{{ __('message.order') }}"
               href="{{ route('client.orders') }}">
-            <span class="">Lịch sử mua hàng</span>
+            <span class="">{{ __('message.order_histories') }}</span>
             </a>
           </li>
           <li>

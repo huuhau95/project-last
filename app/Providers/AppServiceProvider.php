@@ -76,6 +76,11 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with('user', $user);
         });
+
+        view()->composer('layouts/footer_client', function ($view) {
+            $categories = Category::all();
+            $view->with(['categories'=>$categories]);
+        });
     }
 
     /**

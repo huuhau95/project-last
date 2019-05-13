@@ -32,10 +32,10 @@ class SlideRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.max' => 'Name is too long',
-            'name.unique' => 'Name is taken',
-            'image.mimes' => 'Image is jpg, jpeg or png',
-            'image.image' => 'Not image',
+            'name.max' => 'Tên quá dài',
+            'name.unique' => 'Tên đã tồn tại',
+            'image.mimes' => 'Ảnh phải có đuôi là jpg, jpeg or png',
+            'image.image' => 'Không phải là ảnh',
         ];
     }
 }
