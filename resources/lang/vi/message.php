@@ -212,6 +212,7 @@ return [
     'blog' => 'Blog',
     'checkout' => 'Thanh toán',
     'my_account' => 'Tài khoản của tôi',
+    'order_histories' => 'Lịch sử mua hàng',
     're_password' => 'Nhập lại mật khẩu',
     'password' => 'Mật khẩu',
     'full_name' => 'Họ và Tên',
