@@ -90,15 +90,25 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
                                 <div class="header-btns-icon">
                                     <i class="fa fa-shopping-cart"></i>
-                                    <span class="qty">{{ count($cart) }}</span>
+                                    <span class="qty">{{ count($carts) }}</span>
                                 </div>
                                 <strong class="text-uppercase">Giỏ hàng của tôi:</strong>
+                                <br>
+                                <span>
+                                  <?php $total = 0; ?>
+                                  @if(count($carts)>0)
+                                  @foreach($carts as $cart)
+                                    <?php $total+= $cart['item']['product']->price * $cart['item']['quantity']; ?>
+                                  @endforeach
+                                  @endif
+                                  {{ number_format($total) . ' ₫' }}
+                                </span>
                             </a>
-                            @if(count($cart)>0)
+                            @if(count($carts)>0)
                             <div class="custom-menu">
                                 <div id="shopping-cart">
                                     <div class="shopping-cart-list">
-                                      @foreach($cart as $cart)
+                                      @foreach($carts as $cart)
                                         <div class="product product-widget">
                                             <div class="product-thumb">
                                                <img width="75"
@@ -113,7 +123,7 @@
                                         @endforeach
                                     </div>
                                     <div class="shopping-cart-btns">
-                                        <a href="{{ route('client.showCart')}}" class="primary-btn">Thanh toán <i class="fa fa-arrow-circle-right"></i></a>
+                                        <a href="{{ route('client.showCart')}}" class="primary-btn">Tiến hành đặt hàng <i class="fa fa-arrow-circle-right"></i></a>
                                     </div>
                                 </div>
                             </div>

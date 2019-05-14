@@ -27,7 +27,7 @@ class ProductRequest extends FormRequest
             'name' => 'required|max:200|unique:products,name,' . $this->route('product'),
             'price' => 'required|numeric|min:0',
             'quantity' => 'required|numeric|min:1',
-            'discount' => 'numeric|min:0|max:5',
+            'discount' => 'numeric|min:0|max:50',
             'category_id' => 'required',
             'image.*' => 'mimes:jpeg,png,jpg,gif,svg|image',
             'brief' => 'required|max:200',

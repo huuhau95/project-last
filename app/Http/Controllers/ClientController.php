@@ -34,13 +34,13 @@ class ClientController extends Controller
     {
         $best_sale_product = Product::where("selling", 1)
             ->orderBy('id', 'desc')
-            ->take(4)
+            ->take(10)
             ->get();
         $products = Product::with(['images' => function ($query) {
                 $query->where('active', 1)->get();
             }])
             ->orderBy('id', 'desc')
-            ->take(4)
+            ->take(10)
             ->get();
         //recent view
         $slides = Slide::get();

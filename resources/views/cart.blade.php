@@ -20,7 +20,7 @@
     <!-- row -->
     <div class="row">
         @if(count($carts))
-          <div class="col-md-6">
+          <div class="col-md-8">
             <div class="order-summary clearfix">
               <div class="section-title">
                 <h3 class="title">Thông tin sản phẩm đã mua</h3>
@@ -28,8 +28,7 @@
               <table class="shopping-cart-table table">
                 <thead>
                   <tr>
-                    <th>Sản phẩm</th>
-                    <th></th>
+                    <th colspan="2">Sản phẩm</th>
                     <th class="text-center">Giá</th>
                     <th class="text-center">Số lượng</th>
                     <th class="text-center">Tổng tiền</th>
@@ -43,7 +42,7 @@
                   <tr>
                     <td class="thumb"><img width="75"
                       src="{{ asset('images/products/' . $cart['item']['product']->image) }}"></td>
-                      <td class="details">
+                      <td class="details" style="padding: 10px;">
                         <a href="{{ route('client.product.detail', ['id' => $cart['item']['product']->id]) }}">{{ $cart['item']['product']->name }}</a>
                         <ul>
                           <li><span>Size: {{ $cart['item']['size'] }}</span></li>
@@ -65,27 +64,17 @@
                       <th>Tổng tiền</th>
                       <th colspan="2" class="total">{{ number_format($total) . ' ₫' }}</th>
                     </tr>
-                    <tr>
-                      <th class="empty" colspan="3"></th>
-                      <th>SHIPING</th>
-                      <td colspan="2">Free Shipping</td>
-                    </tr>
-                    <tr>
-                      <th class="empty" colspan="3"></th>
-                      <th>Thành tiền</th>
-                      <th colspan="2" class="total">{{ number_format($total) . ' ₫' }}</th>
-                    </tr>
                   </tfoot>
               </table>
             </div>
           </div>
           <form id="form-checkout" class="clearfix">
             @csrf
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="billing-details">
                 <p>Bạn đã là một khách hàng ? <a href="#">Đăng nhập</a></p>
                 <div class="section-title">
-                  <h3 class="title">Thanh toán</h3>
+                  <h3 class="title">Thông tin người nhận</h3>
                 </div>
                 <div class="form-group">
                   <label for="receiver">Người nhận:</label>
@@ -112,7 +101,7 @@
                   placeholder="Note"></textarea>
                 </div>
                 <div class="pull-right">
-                  <button class="primary-btn" id="btn_checkout">Thanh Toán</button>
+                  <button class="primary-btn" id="btn_checkout">Đặt hàng</button>
                 </div>
               </div>
             </div>
