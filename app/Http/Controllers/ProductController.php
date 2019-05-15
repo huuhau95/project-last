@@ -57,6 +57,9 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        if(empty($request->selling)){
+            $request->selling = 0;
+        }
         $product = $this->productModel->create([
             'name' => $request->name,
             'price' => $request->price,
@@ -72,14 +75,13 @@ class ProductController extends Controller
                     if($product) {
                         foreach ($request->image as $photo) {
 
-                            $filename = $product->name . '_' . $photo->getClientOriginalName();
+                            $filename = time() . '_' . $photo->getClientOriginalName();
 
                             $path = public_path(config('asset.image_path.product') . $filename);
                             Images::make($photo->getRealPath())->resize(600, 600)->save($path);
                             $this->imageModel->create([
                                 'name' => $filename,
                                 'product_id' => $product->id,
-                                'active' => 1,
                             ]);
                         }
                     } else {
@@ -98,7 +100,7 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::with('category')->with(['images' => function ($query) {
-            $query->where('active', 1)->get();
+            $query->get();
         }])->findOrFail($id);
 
         return response($product, 200);
@@ -117,7 +119,9 @@ class ProductController extends Controller
         if (Auth::user()->role_id == 2) {
             return Response::json(__('Bạn không phải admin'), 403);
         }
-
+        if(empty($request->selling)){
+            $request->selling = 0;
+        }
         $product = $this->productModel->update([
             'name' => $request->name,
             'price' => $request->price,
@@ -132,14 +136,13 @@ class ProductController extends Controller
         if($request->hasFile('image')) {
             if($product) {
             foreach ($request->image as $photo) {
-                $filename = $request->name . '_' . $photo->getClientOriginalName();
+                $filename = time() . '_' . $photo->getClientOriginalName();
 
                 $path = public_path(config('asset.image_path.product') . $filename);
                 Images::make($photo->getRealPath())->resize(600, 600)->save($path);
                 $img =  $this->imageModel->create([
                         'name' => $filename,
                         'product_id' => $id,
-                        'active' => 1,
                 ]);
             }
             } else {
@@ -166,7 +169,7 @@ class ProductController extends Controller
     public function getAllData()
     {
         $products = Product::with(['images' => function ($query) {
-            $query->where('active', 1)->get();
+            $query->get();
         }])->with('category')->get();
 
         return Datatables::of($products)->make(true);

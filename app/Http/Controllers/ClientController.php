@@ -37,7 +37,7 @@ class ClientController extends Controller
             ->take(10)
             ->get();
         $products = Product::with(['images' => function ($query) {
-                $query->where('active', 1)->get();
+                $query->get();
             }])
             ->orderBy('id', 'desc')
             ->take(10)
@@ -60,12 +60,10 @@ class ClientController extends Controller
     public function detailProduct($id)
     {
         $product = Product::with('category')->with(['images' => function ($query) {
-            $query->orderBy('active', 'desc')
-                ->orderBy('id', 'desc');
+            $query->orderBy('id', 'desc');
         }])->findOrFail($id);
         $products = Product::with('category')->with(['images' => function ($query) {
-            $query->orderBy('active', 'desc')
-                ->orderBy('id', 'desc')->get();
+            $query->orderBy('id', 'desc')->get();
         }])->where('category_id', '=', $product->category->id)
             ->whereNotIn('id', [$product->id])
             ->limit(3)->get();
@@ -81,8 +79,7 @@ class ClientController extends Controller
     public function detailProductData($id)
     {
         $product = Product::with('category')->with(['images' => function ($query) {
-            $query->orderBy('active', 'desc')
-                ->orderBy('id', 'desc')->first();
+            $query->orderBy('id', 'desc')->first();
         }])->findOrFail($id);
         return $product;
     }

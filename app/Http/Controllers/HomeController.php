@@ -6,7 +6,7 @@ use App\Order;
 use App\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Carbon;
 class HomeController extends Controller
 {
     /**
@@ -26,12 +26,54 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $successOrder = Order::where('status', 1)->get();
-        $canceledOrder = Order::where('status', -1)->get();
-        $popularProduct = OrderDetail::with('product.images')
-            ->orderBy('id', 'desc')
-            ->limit(6)
-            ->get();
-        return view('admin.index', compact('successOrder', 'canceledOrder', 'popularProduct'));
+        $total = array();
+        $date = array();
+        $sql = OrderDetail::orderBy('created_at', 'desc')->take(15)->groupBy('created_at')->selectRaw('sum(product_price) as total , created_at')->pluck('created_at', 'total');
+        if (!empty($sql)) {
+            foreach ($sql as $key => $value) {
+            array_push($total, $key);
+            array_push($date, Carbon::parse($value)->format('d-m-Y'));
+            }
+        }
+
+           $chart1 = \Chart::title([
+        'text' => 'Tổng doan thu trong tháng',
+    ])
+    ->chart([
+        'type'     => 'line', // pie , columnt ect
+        'renderTo' => 'chart1', // render the chart into your div with id
+    ])
+    ->subtitle([
+        'text' => 'Doanh thu đơn hàng trong 15 ngày',
+    ])
+    ->colors([
+        '#0c2959'
+    ])
+    ->xaxis([
+        'categories' => $date,
+        'labels'     => [
+            'rotation'  => 15,
+            'align'     => 'top',
+        ],
+    ])
+    ->yaxis([
+        'text' => 'This Y Axis',
+    ])
+    ->legend([
+        'layout'        => 'vertikal',
+        'align'         => 'right',
+        'verticalAlign' => 'middle',
+    ])
+    ->series(
+        [
+            [
+                'name'  => 'Tổng tiền',
+                'data'  => $total,
+            ],
+        ]
+    )
+    ->display();
+
+        return view('admin.index', compact('chart1'));
     }
 }

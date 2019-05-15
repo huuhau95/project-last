@@ -44,9 +44,7 @@ class Cart1Controller extends Controller
         $color = $request->color;
 
         $image_main = Image::where('product_id', $request->product)
-            ->orderBy('active', 'desc')
             ->orderBy('id', 'desc')->first();
-
         $product->image = $image_main->name;
         $cart = new Cart1();
         $cart->addProduct($product, $color, $size);

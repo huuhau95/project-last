@@ -168,6 +168,7 @@ return [
 		App\Providers\RouteServiceProvider::class ,
 
 		Intervention\Image\ImageServiceProvider::class ,
+		RezaAr\Highcharts\Provider::class ,
 	],
 
 	/*
@@ -222,6 +223,7 @@ return [
 		'Image'      => Intervention\Image\Facades\Image::class ,
 		'Alert'      => RealRashid\SweetAlert\Facades\Alert::class ,
 		'DataTables' => Yajra\DataTables\Facades\DataTables::class ,
+		'Chart'      => RezaAr\Highcharts\Facade::class ,
 	],
 
 ];

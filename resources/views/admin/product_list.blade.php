@@ -69,11 +69,6 @@
                             'autocomplete' => 'off']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('quantity', __('message.quantity'), ['class' => 'form-control-label']) !!}
-                            {!! Form::number('quantity', null, ['class' => 'form-control col-md-10',
-                            'required' => 'required', ' id' => 'quantity', 'placeholder' => 'Quantity']) !!}
-                        </div>
-                        <div class="form-group">
                             {!! Form::label('price', __('message.price'), ['class' => 'form-control-label']) !!}
                             {!! Form::number('price', null, ['class' => 'form-control col-md-10',
                             'required' => 'required', ' id' => 'price', 'placeholder' => 'Price']) !!}
@@ -251,7 +246,6 @@
                     $('#name').val(data.name);
                     $('#price').val(data.price);
                     $('#discount').val(data.discount);
-                    $('#quantity').val(data.quantity);
                     $('#category_id').val(data.category_id);
                     $('#brief').val(data.brief);
                     CKEDITOR.instances['description'].setData(data.description);

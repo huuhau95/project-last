@@ -18,7 +18,6 @@ class CreateImagesTable extends Migration
             $table->string('name');
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
-            $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
     }

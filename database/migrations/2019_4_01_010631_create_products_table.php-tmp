@@ -19,9 +19,8 @@ class CreateProductsTable extends Migration {
 				$table->float('discount')->default(0);
 				$table->text('description');
 				$table->unsignedInteger('category_id');
-				$table->unsignedTinyInteger('selling');
+				$table->unsignedTinyInteger('selling')->default(0);
 				$table->foreign('category_id')->references('id')->on('categories');
-				$table->unsignedInteger('quantity');
 				$table->timestamps();
 				$table->softDeletes();
 			});

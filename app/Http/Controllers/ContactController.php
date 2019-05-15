@@ -93,7 +93,7 @@ class ContactController extends Controller
     public function getAllData()
     {
         $Contacts = Contact::with(['images' => function ($query) {
-            $query->where('active', 1)->get();
+            $query->get();
         }])->with('category')->get();
 
         return Datatables::of($Contacts)->make(true);

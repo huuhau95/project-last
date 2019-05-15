@@ -66,7 +66,7 @@ class OrderController extends Controller
     public function showDetail($id)
     {
         $orderDetails = OrderDetail::with(['product.images' => function($query) {
-            $query->where('active', 1)->get();
+            $query->get();
         }])
         ->where('order_id', $id)
         ->get();

@@ -19,7 +19,6 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 1,
                 'selling' => 1,
-                'quantity' => rand(50, 150),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
@@ -30,7 +29,6 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 2,
                 'selling' => 1,
-                'quantity' => rand(50, 150),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
@@ -41,7 +39,6 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 3,
                 'selling' => 1,
-                'quantity' => rand(50, 150),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
@@ -52,7 +49,6 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 4,
                 'selling' => 1,
-                'quantity' => rand(50, 150),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
@@ -63,7 +59,6 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 5,
                 'selling' => 1,
-                'quantity' => rand(50, 150),
             ];
         }
         for ($i = 0; $i < $limit; $i++) {
@@ -74,7 +69,6 @@ class ProductsTableSeeder extends Seeder
                 'description' => 'this is description' . rand(10000, 40000) . $i,
                 'category_id' => 6,
                 'selling' => 1,
-                'quantity' => rand(50, 150),
             ];
         }
         DB::table('products')->insert($data);

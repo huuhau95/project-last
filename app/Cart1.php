@@ -17,15 +17,15 @@ class Cart1
     {
 
         $key = implode('-', [$product->id, $size, $color]);
+        $item_new_price = $product->price  * (1 - $product->discount/100);
         $item_new = [
             'product' => $product,
             'quantity' => 1,
             'size' => $size,
             'color' => $color,
-            'product_price' => $product->price,
+            'product_price' => $item_new_price,
             'product_discount' => $product->discount,
         ];
-        $item_new_price = $product->price  * (1 - $product->discount/100);
         if (empty($this->cart)) {
             $this->cart[] = [
                 'key' => $key,

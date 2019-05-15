@@ -19,6 +19,7 @@
                         <th>Tên</th>
                         <th>Số điện thoại</th>
                         <th>Email</th>
+                        <th>Nội dung</th>
                         <th>{{ __('message.action') }}</th>
                     </tr>
                     </thead>
@@ -59,6 +60,10 @@
                     {
                         data: 'email',
                         data: 'email',
+                    },
+                    {
+                        data: 'content',
+                        data: 'content',
                     },
                     {
                         data: null,

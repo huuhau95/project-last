@@ -52,7 +52,7 @@ class SlideController extends Controller
 
         $image = $request->file('image');
 
-        $filename = $request->name . '_' . $image->getClientOriginalName();
+        $filename = time() . '_' . $image->getClientOriginalName();
 
         $path = public_path(config('asset.image_path.slide') . $filename);
 
@@ -110,7 +110,7 @@ class SlideController extends Controller
 
         if ($image != null) {
 
-            $filename = $request->name . '_' . $image->getClientOriginalName();
+            $filename = time() . '_' . $image->getClientOriginalName();
 
             $path = public_path('images/Slides/' . $filename);
 
@@ -134,16 +134,6 @@ class SlideController extends Controller
 
        $this->SlideModel->delete($id);
     }
-
-    public function getAllData()
-    {
-        $Slides = Slide::with(['images' => function ($query) {
-            $query->where('active', 1)->get();
-        }])->with('category')->get();
-
-        return Datatables::of($Slides)->make(true);
-    }
-
     public function getCategorySelect()
     {
         $slide = Slide::get();
