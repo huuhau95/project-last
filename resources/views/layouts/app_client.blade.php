@@ -10,7 +10,7 @@
     <!-- Favicons Icon -->
     {{-- <link rel="shortcut icon" href="http://htmldemo.themessoft.com/freshia/version3/favicon1.ico" type="image/x-icon"> --}}
     {{-- <link rel="icon" href="http://htmldemo.themessoft.com/freshia/version3/favicon1.ico" type="image/x-icon"> --}}
-    <title>Smart Drink</title>
+    <title>{{ config('app.name', 'E-SHOP') }}</title>
     <!-- Mobile Specific -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <!-- Google font -->

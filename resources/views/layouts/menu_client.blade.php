@@ -27,7 +27,6 @@
                         </li>
                         @endfor
                       </ul>
-                      <hr class="hidden-md hidden-lg">
                     </div>
                     @endforeach
                   </div>

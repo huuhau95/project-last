@@ -58,12 +58,12 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('layouts/header_client', function ($view) {
             if (Session::has('cart')) {
-                $cart = Session('cart');
+                $carts = Session('cart');
             }else{
-                $cart = [];
+                $carts = [];
             }
             $categories = Category::all();
-            $view->with(['cart'=>$cart, 'categories'=>$categories]);
+            $view->with(['carts'=>$carts, 'categories'=>$categories]);
         });
 
         view()->composer('cart', function ($view) {
