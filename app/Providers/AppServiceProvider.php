@@ -69,7 +69,7 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('cart', function ($view) {
 
             if (Auth::check())
-                $user = User::with('potential')->findOrFail(Auth::user()->id);
+                $user = User::findOrFail(Auth::user()->id);
             else
                 $user = '';
 

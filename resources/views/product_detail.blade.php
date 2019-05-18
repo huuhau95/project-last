@@ -72,6 +72,7 @@
               <ul class="tab-nav">
                 <li class="active"><a data-toggle="tab" href="#tab1">Mô tả</a></li>
                 <li><a data-toggle="tab" href="#tab2">Chi tiết</a></li>
+                <li><a data-toggle="tab" href="#tab3">Bình luận</a></li>
               </ul>
               <div class="tab-content">
                 <div id="tab1" class="tab-pane fade in active">
@@ -83,6 +84,9 @@
                  </p>
                 </div>
 
+                  <div id="tab3" class="tab-pane fade in">
+                <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="5"></div>
+                </div>
               </div>
             </div>
           </div>

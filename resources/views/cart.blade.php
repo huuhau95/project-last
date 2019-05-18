@@ -38,7 +38,8 @@
                 <tbody>
                   <?php $total = 0; ?>
                   @foreach($carts as $cart)
-                  <?php $total+= $cart['item']['product']->price * $cart['item']['quantity']; ?>
+
+                  <?php $total+= $cart['item']['product_price'] * $cart['item']['quantity']; ?>
                   <tr>
                     <td class="thumb"><img width="75"
                       src="{{ asset('images/products/' . $cart['item']['product']->image) }}"></td>
@@ -49,9 +50,9 @@
                           <li><span>Màu: {{ $cart['item']['color'] }}</span></li>
                         </ul>
                       </td>
-                      <td class="price text-center"><strong>{{ number_format($cart['item']['product']->price) . ' ₫' }}</strong></td>
+                      <td class="price text-center"><strong>{{ number_format($cart['item']['product_price']) . ' ₫' }}</strong></td>
                       <td class="qty text-center"><input data-id="{{ $cart['key'] }}" class="input quantity" min="1" max="99" type="number" value="{{ $cart['item']['quantity'] }}"></td>
-                      <td class="total text-center"><strong class="primary-color">{{ number_format($cart['item']['product']->price * $cart['item']['quantity']) . ' ₫' }}</strong></td>
+                      <td class="total text-center"><strong class="primary-color">{{ number_format($cart['item']['product_price'] * $cart['item']['quantity']) . ' ₫' }}</strong></td>
                       <td class="text-right">
                         <a href="{{ route('user.cart.delete', ['key' => $cart['key']]) }}"  class="main-btn icon-btn"  data-id="{{ $cart['key'] }}"><i class="fa fa-close"></i></a>
                       </td>
@@ -78,7 +79,16 @@
                 </div>
                 <div class="form-group">
                   <label for="receiver">Người nhận:</label>
-                  <input type="text" class="form-control" id="checkout-receiver" name="receiver" placeholder="Receirver">
+                   <div class="form-group">
+                  @if(Auth::user())
+                    <input type="text" value="{{Auth::user()->name}}" class="form-control" id="checkout-email" name="receiver"
+                  placeholder="Email">
+                  @else
+                    <input type="text" class="form-control" id="checkout-receiver" name="receiver" placeholder="Receirver">
+                  @endif
+
+                </div>
+
                 </div>
                 <div class="form-group">
                   <label for="place">Địa điểm:</label>
@@ -87,12 +97,18 @@
                 </div>
                 <div class="form-group">
                   <label for="email">Email:</label>
-                  <input type="text" class="form-control" id="checkout-email" name="email"
+                  @if(Auth::user())
+                    <input type="text" value="{{Auth::user()->email}}" class="form-control" id="checkout-email" name="email"
                   placeholder="Email">
+                  @else
+                     <input type="text" class="form-control" id="checkout-email" name="email"
+                  placeholder="Email">
+                  @endif
+
                 </div>
                 <div class="form-group">
                   <label for="phone">Số điện thoại:</label>
-                  <input type="text" class="form-control" name="phone" id="checkout-phone"
+                   <input type="text" class="form-control" name="phone" id="checkout-phone"
                   placeholder="Phone">
                 </div>
                 <div class="form-group">

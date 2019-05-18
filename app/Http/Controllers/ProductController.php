@@ -63,7 +63,6 @@ class ProductController extends Controller
         $product = $this->productModel->create([
             'name' => $request->name,
             'price' => $request->price,
-            'quantity' => $request->quantity,
             'category_id' => $request->category_id,
             'brief' => $request->brief,
             'description' => $request->description,
@@ -125,7 +124,6 @@ class ProductController extends Controller
         $product = $this->productModel->update([
             'name' => $request->name,
             'price' => $request->price,
-            'quantity' => $request->quantity,
             'category_id' => $request->category_id,
             'brief' => $request->brief,
             'description' => $request->description,

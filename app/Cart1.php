@@ -26,7 +26,7 @@ class Cart1
             'product_price' => $item_new_price,
             'product_discount' => $product->discount,
         ];
-        if (empty($this->cart)) {
+            if (empty($this->cart)) {
             $this->cart[] = [
                 'key' => $key,
                 'item' => $item_new,

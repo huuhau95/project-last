@@ -53,24 +53,29 @@ class AppServiceProvider extends ServiceProvider {
 
 		view()->composer('layouts/header_client', function ($view) {
 				if (Session::has('cart')) {
-					$cart = Session('cart');
+					$carts = Session('cart');
 				} else {
-					$cart = [];
+					$carts = [];
 				}
 				$categories = Category::all();
-				$view->with(['cart' => $cart, 'categories' => $categories]);
+				$view->with(['carts' => $carts, 'categories' => $categories]);
 			});
 
 		view()->composer('cart', function ($view) {
 
 				if (Auth::check()) {
-					$user = User::with('potential')->findOrFail(Auth::user()->id);
+					$user = User::findOrFail(Auth::user()->id);
 				} else {
 
 					$user = '';
 				}
 
 				$view->with('user', $user);
+			});
+
+		view()->composer('layouts/footer_client', function ($view) {
+				$categories = Category::all();
+				$view->with(['categories' => $categories]);
 			});
 	}
 

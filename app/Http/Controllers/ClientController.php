@@ -186,6 +186,7 @@ class ClientController extends Controller
                 'size' => $product['item']['size'],
                 'color' => $product['item']['color'],
                 'quantity' => $product['item']['quantity'],
+                'status' => 0,
             ]);
         }
         session()->put('status-cart', true);

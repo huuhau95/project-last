@@ -7,6 +7,7 @@ use App\OrderDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Carbon;
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -28,14 +29,13 @@ class HomeController extends Controller
     {
         $total = array();
         $date = array();
-        $sql = OrderDetail::orderBy('created_at', 'desc')->take(15)->groupBy('created_at')->selectRaw('sum(product_price) as total , created_at')->pluck('created_at', 'total');
+        $sql = OrderDetail::orderBy('created_at', 'asc')->groupBy(DB::raw('Date(created_at)'))->selectRaw('sum(product_price) as total , created_at')->get();
         if (!empty($sql)) {
             foreach ($sql as $key => $value) {
-            array_push($total, $key);
-            array_push($date, Carbon::parse($value)->format('d-m-Y'));
+            array_push($total, (int) $value->total);
+            array_push($date, Carbon::parse($value->created_at)->format('d-m-Y'));
             }
         }
-
            $chart1 = \Chart::title([
         'text' => 'Tổng doan thu trong tháng',
     ])
