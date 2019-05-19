@@ -68,10 +68,7 @@
                                      @else
                                      <h3 class="product-price">{{ number_format($product->price) . ' ₫' }}</h3>
                                      @endif
-                                    <h2 class="product-name"><a href="#">{{ $product->name }}</a></h2>
-                                    <div class="product-btns">
-                                         <a data-id="{{ $product->id }}" data-toggle="modal" href="#" data-target="#order" class="primary-btn add-to-cart add-to-btn btnBuy"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a>
-                                    </div>
+                                    <h2 class="product-name"><a href="{{ route('client.product.detail', ['id' => $product->id]) }}">{{ $product->name }}</a></h2>
                                 </div>
                             </div>
                             @endforeach
@@ -128,11 +125,7 @@
                                      <h3 class="product-price">{{ number_format($product->price) . ' ₫' }}</h3>
                                      @endif
 
-                                    <h2 class="product-name"><a href="#">{{ $product->name }}</a></h2>
-                                    <div class="product-btns">
-                                         <a data-id="{{ $product->id }}" data-toggle="modal" href="#" data-target="#order" class="primary-btn add-to-cart add-to-btn btnBuy"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</a>
-                                    </div>
-                                </div>
+                                    <h2 class="product-name"><a href="{{ route('client.product.detail', ['id' => $product->id]) }}">{{ $product->name }}</a></h2>                                </div>
                             </div>
                             @endforeach
                             @endif
@@ -148,4 +141,3 @@
     <!-- /section -->
 
     @endsection
-@include('layouts.modal_cart')

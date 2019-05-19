@@ -38,20 +38,20 @@ class Client_UserRequest extends FormRequest
     {
         // update
         return [
-            'name.required' => 'Name is not empty',
-            'name.max' => 'Name must smaller 191 character !',
-            'email.required' => 'Enter your email !',
-            'email.email' => 'Not is a email !',
-            'email.unique' => 'This email has taken !',
-            'email.max' => 'Email must less than 191 character !',
-            'password.required' => 'Enter user password !',
-            'password.max' => 'Password must smaller 191 character !',
-            're_password.required' => 'Enter re_password !',
-            're_password.same' => 'Password not same !',
-            'address.required' => 'Enter user address !',
-            'address.max' => 'Address must smaller 191 character !',
-            'phone.regex' => 'Must enter number phone !',
-            'avatar.mimes' => 'Not a image !',
+            'name.required' => 'Tên là bắt buộc',
+            'name.max' => 'Tên không được vượt quá 191 ký tự',
+            'email.required' => 'Email là bắt buộc',
+            'email.email' => 'Email không đúng định dạng',
+            'email.unique' => 'Email đã tồn tại',
+            'email.max' => 'Email không được vượt quá 191 ký tự',
+            'password.required' => 'Mật khẩu là bắt buộc',
+            'password.max' => 'Mật khẩu không được vượt quá 191 ký tự',
+            're_password.required' => 'Nhập lại mật khẩu là bắt buộc',
+            're_password.same' => 'Nhập lại mật khẩu không khớp',
+            'address.required' => 'Địa chỉ là bắt buộc',
+            'address.max' => 'Địa chỉ không được vượt quá 191 ký tự',
+            'phone.regex' => 'Số điện thoại không đúng định dạng',
+            'avatar.mimes' => 'Đây không phải là ảnh',
         ];
     }
 }

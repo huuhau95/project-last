@@ -29,4 +29,16 @@ class OrderRequest extends FormRequest
             'order_phone' => 'required|digits_between:9,11',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Tên là bắt buộc',
+            'name.max' => 'Tên không được vượt quá 191 ký tự',
+            'order_place.required' => 'Địa chỉ là bắt buộc',
+            'order_place.max' => 'Địa chỉ không được vượt quá 191 ký tự',
+            'order_phone.required' => 'Số điện thoại là bắt buộc',
+            'order_phone.digits_between' => 'Số điện thoại chỉ được từ 9 đến 11 ký tự',
+        ];
+    }
 }

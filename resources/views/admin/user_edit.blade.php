@@ -122,7 +122,7 @@ $(document).ready(function() {
             console.log("success");
         })
         .fail(function() {
-            swal('Something wrong !', {icon: 'error'});
+            swal('Đã có lỗi xảy ra! Vui lòng kiểm tra lại.', {icon: 'error'});
             console.log("error");
         })
         .always(function() {
@@ -149,9 +149,9 @@ $(document).ready(function() {
     $('.btnSubmit').click(function(event) {
         event.preventDefault();
         if ($("#password").val()=='' || $("#re_password").val()=='') {
-            toastr.error('Mật khẩu và nhập lại mật khẩu là bắt buộc ', 'Error!');
+            toastr.error('Mật khẩu và nhập lại mật khẩu là bắt buộc ', 'Có lỗi!');
         }else if($("#password").val() != $("#re_password").val()){
-             toastr.error('Mật khẩu và nhập lại mật khẩu không khớp ', 'Error!');
+             toastr.error('Mật khẩu và nhập lại mật khẩu không khớp ', 'Có lỗi!');
         }else{
         funtionAjax();
         }
