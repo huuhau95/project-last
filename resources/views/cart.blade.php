@@ -73,7 +73,9 @@
             @csrf
             <div class="col-md-4">
               <div class="billing-details">
+                @if(!Auth::check())
                 <p>Bạn đã là một khách hàng ? <a href="#">Đăng nhập</a></p>
+                @endif
                 <div class="section-title">
                   <h3 class="title">Thông tin người nhận</h3>
                 </div>
@@ -91,9 +93,18 @@
 
                 </div>
                 <div class="form-group">
+                   <div class="form-group">
                   <label for="place">Địa điểm:</label>
-                  <input type="text" class="form-control" id="checkout-place" name="place"
+                   @if(Auth::user())
+                    <input type="text" value="{{Auth::user()->address}}" class="form-control" id="checkout-place" name="place"
                   placeholder="Place">
+                  @else
+                    <input type="text" class="form-control" id="checkout-place" name="place"
+                  placeholder="Place">
+                  @endif
+                </div>
+
+
                 </div>
                 <div class="form-group">
                   <label for="email">Email:</label>
@@ -108,8 +119,13 @@
                 </div>
                 <div class="form-group">
                   <label for="phone">Số điện thoại:</label>
-                   <input type="text" class="form-control" name="phone" id="checkout-phone"
+                   @if(Auth::user())
+                    <input type="text" value="{{Auth::user()->phone}}" class="form-control" name="phone" id="checkout-phone"
                   placeholder="Phone">
+                  @else
+                     <input type="text" class="form-control" name="phone" id="checkout-phone"
+                  placeholder="Phone">
+                  @endif
                 </div>
                 <div class="form-group">
                   <label for="note">Chú thích:</label>

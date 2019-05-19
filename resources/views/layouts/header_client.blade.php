@@ -98,7 +98,7 @@
                                   <?php $total = 0; ?>
                                   @if(count($carts)>0)
                                   @foreach($carts as $cart)
-                                    <?php $total+= $cart['item']['product']->price * $cart['item']['quantity']; ?>
+                                    <?php $total+= $cart['item']['product_price'] * $cart['item']['quantity']; ?>
                                   @endforeach
                                   @endif
                                   {{ number_format($total) . ' ₫' }}
@@ -115,7 +115,7 @@
                                                   src="{{ asset('images/products/' . $cart['item']['product']->image) }}">
                                             </div>
                                             <div class="product-body">
-                                                <h3 class="product-price">{{ number_format($cart['item']['product']->price) . ' ₫' }} <span class="qty">x{{ $cart['item']['quantity'] }}</span></h3>
+                                                <h3 class="product-price">{{ number_format($cart['item']['product_price']) . ' ₫' }} <span class="qty">x{{ $cart['item']['quantity'] }}</span></h3>
                                                 <h2 class="product-name"><a href="{{ route('client.product.detail', ['id' => $cart['item']['product']->id]) }}">{{ $cart['item']['product']->name }}</a></h2>
                                             </div>
                                             <a href="{{ route('user.cart.delete', ['key' => $cart['key']]) }}" class="cancel-btn"><i class="fa fa-trash"></i></a>

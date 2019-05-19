@@ -85,7 +85,7 @@
                 </div>
 
                   <div id="tab3" class="tab-pane fade in">
-                <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="5"></div>
+                <div class="fb-comments" data-href="{{ route('client.product.detail', ['id' => $product->id]) }}" data-width="100%" data-numposts="5"></div>
                 </div>
               </div>
             </div>
