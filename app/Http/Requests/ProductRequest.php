@@ -36,22 +36,21 @@ class ProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Name is empty',
-            'name.max' => 'Name is too long',
-            'name.unique' => 'Name is taken',
-            'price.required' => 'Price is empty',
-            'price.numeric' => 'Price must be number',
-            'price.min' => 'Price is too small',
-            'discount.numeric' => 'Price is number',
-            'discount.min' => 'Discount is too small',
-            'quantity.numeric' => 'Quantity is number',
-            'quantity.min' => 'Quantity is too small',
-            'category_id.required' => 'Not choose cateogory',
-            'image.required' => 'Image is not empty',
-            'image.mimes' => 'Image is jpg, jpeg or png',
-            'image.image' => 'Not image',
-            'brief.required' => 'Brief is empty',
-            'brief.max' => 'Brief is too long',
+            'name.required' => 'Tên là bắt buộc',
+            'name.max' => 'Tên không được vượt quá 200 ký tự',
+            'name.unique' => 'Tên đã tồn tại',
+            'price.required' => 'Giá là bắt buộc',
+            'price.numeric' => 'Giá phải là kiểu số',
+            'price.min' => 'Giá quá nhỏ',
+            'discount.numeric' => 'Khuyến mại phải là kiểu số',
+            'discount.min' => 'Khuyến mại quá nhỏ',
+            'discount.max' => 'Khuyến mại vượt quá 50%',
+            'category_id.required' => 'Bạn cần chọn danh mục sản phẩm',
+            'image.required' => 'Bạn cần chọn ảnh sản phẩm',
+            'image.mimes' => 'Ảnh phải có đuôi là jpg, jpeg hoặc png',
+            'image.image' => 'Đây không phải là ảnh',
+            'brief.required' => 'Tóm tắt là bắt buộc',
+            'brief.max' => 'Tóm tắt không được vượt quá 200 ký tự',
         ];
     }
 }

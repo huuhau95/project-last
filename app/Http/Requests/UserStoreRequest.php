@@ -39,23 +39,23 @@ class UserStoreRequest extends FormRequest
     {
         // update
         return [
-            'name.required'        => __('validation.required', ['attribute' => 'name']),
-            'name.max'             => 'Name must smaller 191 character !',
-            'email.required'       => 'Enter your email !',
-            'email.email'          => 'Not is a email !',
-            'email.unique'         => 'This email has taken !',
-            'email.max'            => 'Email must less than 191 character !',
-            'password.required'    => 'Enter user password !',
-            'password.max'         => 'Password must smaller 191 character !',
-            're_password.required' => 'Enter re_password !',
-            're_password.same'     => 'Password not same !',
-            'address.required'     => 'Enter user address !',
-            'address.max'          => 'Address must smaller 191 character !',
-            'phone.required'       => 'Enter user phone number !',
-            'phone.max'            => 'Phone must smaller 11 number !',
-            'phone.min'            => 'Phone must at least 10 number !',
-            'role.required'        => 'Select role !',
-            'avatar.mimes'         => 'Not a image !',
+            'name.required'        => 'Tên là bắt buộc'
+            'name.max'             => 'Tên không được vượt quá 191 ký tự',
+            'email.required'       => 'Email là bắt buộc',
+            'email.email'          => 'Email không đúng định dạng',
+            'email.unique'         => 'Email đã tồn tại',
+            'email.max'            => 'Email không được vượt quá 191 ký tự',
+            'password.required'    => 'Mật khẩu là bắt buộc',
+            'password.max'         => 'Mật khẩu phải từ 6 đến 50 ký tự',
+            're_password.required' => 'Nhập lại mật khẩu là bắt buộc',
+            're_password.same'     => 'Mật khẩu không khớp',
+            'address.required'     => 'Địa chỉ là bắt buộc',
+            'address.max'          => 'Địa chỉ không được vượt quá 191 ký tự',
+            'phone.required'       => 'Số điện thoại là bắt buộc',
+            'phone.max'            => 'Số điện thoại không được vượt quá 11 ký tự',
+            'phone.min'            => 'Số điện thoại phải từ 9 ký tự trở lên',
+            'role.required'        => 'Bạn cần chọn vai trò',
+            'avatar.mimes'         => 'Đây không phải là ảnh',
         ];
     }
 }

@@ -97,10 +97,10 @@
                 var row = $(this).closest('tr');
                 var id = row.find('td:eq(0)').text();
                 swal({
-                    title: "Bạn có chắc muốn xóa không?",
-                    text: "Sau khi xóa, bạn sẽ không thể khôi phục lại dữ liệu!",
+                    title: "Bạn có chắc chắn muốn xóa?",
+                    text: "Sau khi xóa bạn không thể khôi phục được dữ liệu này!",
                     icon: "warning",
-                    buttons: true,
+                    buttons: ["Hủy bỏ", "Xóa"],
                     dangerMode: true,
                 })
                 .then((willDelete) => {
@@ -110,14 +110,14 @@
                             url: route('admin.contact.destroy', {id: id}),
                             success: function (data, res) {
                                 swal({
-                                    title: "Success",
+                                    title: "Thành công",
                                     icon: "success",
                                     timer: 2000,
                                 });
                                 size_table.ajax.reload(null, false);
                             },
                             error: function(xhr, status, error) {
-                                toastr.error(JSON.parse(xhr.responseText), 'Error!');
+                                toastr.error(JSON.parse(xhr.responseText), 'Có lỗi!');
                             }
                         });
                     }
@@ -142,7 +142,7 @@
                         size_table.ajax.reload(null, false);
                         $('#modal-size').modal('hide');
                         swal({
-                            title: "Success",
+                            title: "Thành công",
                             icon: "success",
                             timer: 2000,
                         });
@@ -150,12 +150,12 @@
                     error: function (xhr, status, error) {
                         var err = JSON.parse(xhr.responseText);
                         if (xhr.status == 403) {
-                            toastr.error(err, 'Error!');
+                            toastr.error(err, 'Có lỗi!');
                         }
                         else {
                             var errors = Object.entries(err.errors);
                             errors.forEach(function (value, index) {
-                                toastr.error(value[1][0], 'Error!');
+                                toastr.error(value[1][0], 'Có lỗi!');
                             });
                         }
                     },

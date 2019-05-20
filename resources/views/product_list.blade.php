@@ -53,9 +53,6 @@
                                @endif
 
                                <h2 class="product-name"><a href="#">{{ $product->name }}</a></h2>
-                               <div class="product-btns">
-                                 <a data-id="{{ $product->id }}" data-toggle="modal" href="#" data-target="#order" class="primary-btn add-to-cart add-to-btn btnBuy"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ Hàng</a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -82,4 +79,3 @@
 <!-- /container -->
 </div>
 @endsection
-@include('layouts.modal_cart')

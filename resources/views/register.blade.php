@@ -17,40 +17,40 @@
     </div>
     <div class="main container">
         <div class="account-login" style="margin:5% 0">
+            {!! Form::open(['method' => 'post', 'route' => 'register', 'files' => true, 'id' => 'client_user_register']) !!}
             <fieldset class="col2-set">
-                <div class="col-md-offset-3 col-md-6">
-                    {!! Form::open(['method' => 'post', 'route' => 'register', 'files' => true, 'id' => 'client_user_register']) !!}
+                <div class="col-md-offset-1 col-md-3 registered-users">
+                    <div class="content">
+                        <br>
+                        <h4>{{ __('message.avatar') }}</h4>
+                        <div class="buttons-set" style="margin-bottom: 20px">
+                            <div id="" class="img-fluid">
+                                <img id="image_review_create" src="{{ asset('images/default.jpeg') }}"
+                                style="max-height: 350px;max-width: 200px" class="card-img">
+                            </div>
+                        </div>
+                        {!! Form::file('avatar', ['class' => 'd-none', 'id' => 'avatar_client', 'class' => 'form-control-']) !!}
+                        {!! Form::hidden('role', 3) !!}
+                    </div>
+                </div>
+                <div class="col-md-7">
                     <div class="col-1 new-users">
                         <div class="content">
                             <div class="form-group">
                                 {!! Form::label('email', __('message.email')) !!}
                                 {!! Form::text('email', '', ['class' => 'input', 'id' => 'email',
-                                'autocomplete' => 'off', 'placeholder' => 'Email Address']) !!}
+                                'autocomplete' => 'off', 'placeholder' => 'Email']) !!}
                                 @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
                                     {{ $errors->first('email') }}*
                                 </span>
                                 @endif
                             </div>
-                            <div class="form-group">
-                                {!! Form::label('password', __('message.password'), []) !!}
-                                {!! Form::password('password', ['class' => 'input', 'id' => 'password',
-                                'placeholder' => 'Password']) !!}
-                                @if ($errors->has('password'))
-                                <span class="invalid-feedback" role="alert">
-                                    {{ $errors->first('password') }}*
-                                </span>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                {!! Form::label('password-confirm', __('message.re_password')) !!}
-                                {!! Form::password('password_confirmation', ['class' => 'input', 'id' => 'password_confirmation',
-                                'placeholder' => 'password confirmation', 'id' => 'password-confirm']) !!}
-                            </div>
+                            
                             <div class="form-group">
                                 {!! Form::label('name', __('message.full_name')) !!}
                                 {!! Form::text('name', '', ['class' => 'input', 'id' => 'name',
-                                'placeholder' => 'Your name']) !!}
+                                'placeholder' => 'Họ và tên']) !!}
                                 @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
                                     {{ $errors->first('name') }}*
@@ -60,7 +60,7 @@
                             <div class="form-group">
                                 {!! Form::label('address', __('message.address')) !!}
                                 {!! Form::text('address', '', ['class' => 'input', 'id' => 'address',
-                                'placeholder' => 'Your Address']) !!}
+                                'placeholder' => 'Địa chỉ']) !!}
                                 @if ($errors->has('address'))
                                 <span class="invalid-feedback" role="alert">
                                     {{ $errors->first('address') }}*
@@ -70,12 +70,27 @@
                             <div class="form-group">
                                 {!! Form::label('phone', __('message.phone')) !!}
                                 {!! Form::number('phone', '', ['class' => 'input', 'id' => 'phone',
-                                'placeholder' => 'Your Phone']) !!}
+                                'placeholder' => 'Số điện thoại']) !!}
                                 @if ($errors->has('phone'))
                                 <span class="invalid-feedback" role="alert">
                                     {{ $errors->first('phone') }}*
                                 </span>
                                 @endif
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('password', __('message.password'), []) !!}
+                                {!! Form::password('password', ['class' => 'input', 'id' => 'password',
+                                'placeholder' => 'Mật khẩu']) !!}
+                                @if ($errors->has('password'))
+                                <span class="invalid-feedback" role="alert">
+                                    {{ $errors->first('password') }}*
+                                </span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('password-confirm', __('message.re_password')) !!}
+                                {!! Form::password('password_confirmation', ['class' => 'input', 'id' => 'password_confirmation',
+                                'placeholder' => 'Nhập lại mật khẩu', 'id' => 'password-confirm']) !!}
                             </div>
                             <div class="buttons-set">
                                 <button id="register" name="send" type="submit" class="button login primary-btn">
@@ -84,23 +99,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-2 registered-users">
-                        <div class="content">
-                            <br>
-                            <h4>{{ __('message.avatar') }}</h4>
-                            <div class="buttons-set">
-                                <div id="" class="img-fluid">
-                                    <img id="image_review_create" src="{{ asset('images/default.jpeg') }}"
-                                    style="max-height: 350px;max-width: 200px" class="card-img">
-                                </div>
-                            </div>
-                            {!! Form::file('avatar', ['class' => 'd-none', 'id' => 'avatar_client', 'class' => 'form-control-']) !!}
-                            {!! Form::hidden('role', 3) !!}
-                        </div>
-                    </div>
-                    {!! Form::close() !!}
                 </fieldset>
             </div>
+            {!! Form::close() !!}
         </div>
     </div>
 </section>

@@ -164,7 +164,7 @@
                     category_table.ajax.reload(null, false);
                     $('#modal-category').modal('hide');
                     swal({
-                        title: "Success",
+                        title: "Thành công",
                         icon: "success",
                         timer: 2000,
                     });
@@ -172,12 +172,12 @@
                 error: function (xhr, status, error) {
                     var err = JSON.parse(xhr.responseText);
                     if (xhr.status == 403) {
-                        toastr.error(err, 'Error!');
+                        toastr.error(err, 'Có lỗi!');
                     }
                     else {
                         var errors = Object.entries(err.errors);
                         errors.forEach(function (value, index) {
-                            toastr.error(value[1][0], 'Error!');
+                            toastr.error(value[1][0], 'Có lỗi!');
                         });
                     }
                 },
@@ -198,10 +198,10 @@
             var row = $(this).closest('tr');
             var id = row.find('td:eq(0)').text();
             swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
+                title: "Bạn có chắc chắn muốn xóa?",
+                text: "Sau khi xóa bạn không thể khôi phục được dữ liệu này!",
                 icon: "warning",
-                buttons: true,
+                buttons: ["Hủy bỏ", "Xóa"],
                 dangerMode: true,
             })
             .then((willDelete) => {
@@ -212,7 +212,7 @@
                         success: function (res) {
                             category_table.ajax.reload(null, false);
                             swal({
-                                title: "Success",
+                                title: "Thành công",
                                 icon: "success",
                                 timer: 2000,
                             });
@@ -220,13 +220,13 @@
                         error: function (xhr, status, error) {
                             var err = JSON.parse(xhr.responseText);
                             if (xhr.status == 403) {
-                                toastr.error(err, 'Error!');
+                                toastr.error(err, 'Có lỗi!');
                             }
                             else {
                                 console.log(error);
                                 var errors = Object.entries(err.errors);
                                 errors.forEach(function (value, index) {
-                                    toastr.error(value[1][0], 'Error!');
+                                    toastr.error(value[1][0], 'Có lỗi!');
                                 });
                             }
                         },

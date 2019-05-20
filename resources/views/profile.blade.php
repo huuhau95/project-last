@@ -26,7 +26,7 @@
                     <div class="form-group">
                         {!! Form::label('name', __('message.name')) !!}
                         {!! Form::hidden('id', $user->id, ['d-none', 'id' => 'id']) !!}
-                        {!! Form::text('name', $user->name, ['class' => 'form-control']) !!}
+                        {!! Form::text('name', $user->name, ['class' => 'form-control', 'placeholder' => 'Họ và tên']) !!}
                         @if ($errors->has('name'))
                             <span class="text-danger" role="alert">
                             <strong>{{ $errors->first('name') }}</strong>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="form-group">
                         {!! Form::label('email', __('message.email')) !!}
-                        {!! Form::text('email', $user->email, ['class' => 'form-control']) !!}
+                        {!! Form::text('email', $user->email, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
                         @if ($errors->has('email'))
                             <span class="text-danger" role="alert">
                             <strong>{{ $errors->first('email') }}</strong>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group">
                         {!! Form::label('address', __('message.address')) !!}
-                        {!! Form::text('address', $user->address, ['class' => 'form-control']) !!}
+                        {!! Form::text('address', $user->address, ['class' => 'form-control', 'placeholder' => 'Địa chỉ']) !!}
                         @if ($errors->has('address'))
                             <span class="text-danger" role="alert">
                             <strong>{{ $errors->first('address') }}</strong>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="form-group">
                         {!! Form::label('phone', __('message.phone')) !!}
-                        {!! Form::text('phone', $user->phone, ['class' => 'form-control']) !!}
+                        {!! Form::text('phone', $user->phone, ['class' => 'form-control', 'placeholder' => 'Số điện thoại']) !!}
                         @if ($errors->has('phone'))
                             <span class="text-danger" role="alert">
                             <strong>{{ $errors->first('phone') }}</strong>

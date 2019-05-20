@@ -35,15 +35,15 @@ class CheckoutRequest extends FormRequest
     public function messages()
     {
         return [
-            'receiver.required' => 'Name is empty',
-            'receiver.max' => 'Name must smaller 100 character',
-            'email.required' => 'Email is empty',
-            'email.email' => 'Email is wrong',
-            'place.required' => 'Place is empty!',
-            'place.max' => 'Address must smaller 300 character',
-            'phone.digits_between' => 'Your phone is wrong !',
-            'phone.required' => 'Phone is empty',
-            'note.max' => 'Note must smaller 300 character',
+            'receiver.required' => 'Tên là bắt buộc',
+            'receiver.max' => 'Tên không được vượt quá 100 ký tự',
+            'email.required' => 'Email là bắt buộc',
+            'email.email' => 'Email không đúng định dạng',
+            'place.required' => 'Địa chỉ là bắt buộc',
+            'place.max' => 'Địa chỉ không được vượt quá 300 ký tự',
+            'phone.digits_between' => 'Số điện thoại không đúng định dạng',
+            'phone.required' => 'Số điện thoại là bắt buộc',
+            'note.max' => 'Chú thích không được vượt quá 300 ký tự',
         ];
     }
 }

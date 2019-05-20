@@ -34,15 +34,15 @@ class ContactRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Name is empty',
-            'name.max' => 'Name is too long',
-             'email.required' => 'email is empty',
-             'email.email' => 'email không đúng định dạng',
-            'email.max' => 'email is too long',
-             'phone.required' => 'phone is empty',
-            'phone.max' => 'phone is too long',
-             'message.required' => 'message is empty',
-            'message.max' => 'message is too long',
+            'name.required' => 'Tên là bắt buộc',
+            'name.max' => 'Tên không được vượt quá 200 ký tự',
+             'email.required' => 'Email là bắt buộc',
+             'email.email' => 'Email không đúng định dạng',
+            'email.max' => 'Email không được vượt quá 200 ký tự',
+             'phone.required' => 'Số điện thoại là bắt buộc',
+            'phone.max' => 'Số điện thoại không được vượt quá 200 ký tự',
+             'message.required' => 'Nội dung là bắt buộc',
+            'message.max' => 'Nội dung không được vượt quá 200 ký tự',
         ];
     }
 }

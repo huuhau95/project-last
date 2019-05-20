@@ -124,9 +124,6 @@
             <div class="product-body">
               <h3 class="product-price">{{ number_format($product->price * (1- $product->discount /100)) . ' ₫' }}</h3>
               <h2 class="product-name"><a href="{{ route('client.product.detail', ['id' => $product->id]) }}">{{ $product->name }}</a></h2>
-              <div class="product-btns">
-                 <a  href="{{ route('client.product.detail', ['id' => $product->id]) }}" class="primary-btn add-to-cart"><i class="fa fa-shopping-cart"></i> Chi tiết</a>
-              </div>
             </div>
           </div>
         </div>

@@ -32,7 +32,7 @@ class CategoryRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Tên còn trống',
+            'name.required' => 'Tên là bắt buộc',
             'name.unique' => 'Tên đã tồn tại',
             'name.max' => 'Tên tối đa 200 kí tự',
         ];

@@ -84,9 +84,9 @@
                    <div class="form-group">
                   @if(Auth::user())
                     <input type="text" value="{{Auth::user()->name}}" class="form-control" id="checkout-email" name="receiver"
-                  placeholder="Email">
+                  placeholder="Tên người nhận">
                   @else
-                    <input type="text" class="form-control" id="checkout-receiver" name="receiver" placeholder="Receirver">
+                    <input type="text" class="form-control" id="checkout-receiver" name="receiver" placeholder="Tên người nhận">
                   @endif
 
                 </div>
@@ -97,10 +97,10 @@
                   <label for="place">Địa điểm:</label>
                    @if(Auth::user())
                     <input type="text" value="{{Auth::user()->address}}" class="form-control" id="checkout-place" name="place"
-                  placeholder="Place">
+                  placeholder="Địa chỉ">
                   @else
                     <input type="text" class="form-control" id="checkout-place" name="place"
-                  placeholder="Place">
+                  placeholder="Địa chỉ">
                   @endif
                 </div>
 
@@ -121,16 +121,16 @@
                   <label for="phone">Số điện thoại:</label>
                    @if(Auth::user())
                     <input type="text" value="{{Auth::user()->phone}}" class="form-control" name="phone" id="checkout-phone"
-                  placeholder="Phone">
+                  placeholder="Số điện thoại">
                   @else
                      <input type="text" class="form-control" name="phone" id="checkout-phone"
-                  placeholder="Phone">
+                  placeholder="Số điện thoại">
                   @endif
                 </div>
                 <div class="form-group">
                   <label for="note">Chú thích:</label>
                   <textarea class="form-control" name="note" id="checkout-note"
-                  placeholder="Note"></textarea>
+                  placeholder="Chú thích"></textarea>
                 </div>
                 <div class="pull-right">
                   <button class="primary-btn" id="btn_checkout">Đặt hàng</button>

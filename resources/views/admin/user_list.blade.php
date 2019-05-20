@@ -223,7 +223,7 @@ jQuery(document).ready(function($) {
             }
         })
         .fail(function() {
-            swal("Something wrong !", {
+            swal("Đã có lỗi xảy ra! Vui lòng kiểm tra lại.", {
                 icon: "error",
             });
             console.log("error");
@@ -238,10 +238,10 @@ jQuery(document).ready(function($) {
         event.preventDefault();
 
         swal({
-            title: 'Are you sure?',
-            text: 'Once deleted, you will not be able to recover this user!',
-            icon: 'warning',
-            buttons: true,
+            title: "Bạn có chắc chắn muốn xóa?",
+            text: "Sau khi xóa bạn không thể khôi phục được dữ liệu này!",
+            icon: "warning",
+            buttons: ["Hủy bỏ", "Xóa"],
             dangerMode: true,
         })
         .then((willDelete) => {
@@ -252,7 +252,7 @@ jQuery(document).ready(function($) {
                 })
                 .done(function(data) {
                     if (data == 'fail') {
-                        swal('You dont have permission !', {icon: 'error'});
+                        swal('Bạn không có quyền thực hiện tác vụ này !', {icon: 'error'});
                     } else {
                         swal(data, {
                             icon: "success",
@@ -263,7 +263,7 @@ jQuery(document).ready(function($) {
                 })
                 .fail(function() {
                     console.log('fail');
-                    swal("Something wrong !", {icon: "error"});
+                    swal("Đã có lỗi xảy ra! Vui lòng kiểm tra lại.", {icon: "error"});
                 })
                 .always(function() {
                     console.log("complete");
@@ -324,7 +324,7 @@ jQuery(document).ready(function($) {
                 console.log("success");
             })
             .fail(function() {
-                swal('Something wrong !', {icon: 'error'});
+                swal('Đã có lỗi xảy ra! Vui lòng kiểm tra lại.', {icon: 'error'});
                 console.log("error");
             })
             .always(function() {
@@ -362,7 +362,7 @@ jQuery(document).ready(function($) {
             console.log("success");
         })
         .fail(function() {
-            swal('Something wrong !', {icon: 'error'});
+            swal('Đã có lỗi xảy ra! Vui lòng kiểm tra lại.', {icon: 'error'});
             console.log("error");
         })
         .always(function() {
@@ -376,10 +376,10 @@ jQuery(document).ready(function($) {
         var id = $(this).parents().data('id');
 
         swal({
-            title: 'Are you sure?',
-            text: 'You will active this user',
+            title: 'Bạn có chắc chắn muốn thay đổi?',
+            text: 'Bạn sẽ kích hoạt người dùng này',
             icon: 'warning',
-            buttons: true,
+            buttons: ["Hủy bỏ", "OK"],
             dangerMode: false,
         })
         .then((willDelete) => {
@@ -400,7 +400,7 @@ jQuery(document).ready(function($) {
                     }
                 })
                 .fail(function() {
-                    swal('Something wrong !', {icon: 'error'});
+                    swal('Đã có lỗi xảy ra! Vui lòng kiểm tra lại.', {icon: 'error'});
                     console.log("error");
                 })
                 .always(function() {

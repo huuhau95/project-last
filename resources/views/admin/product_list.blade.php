@@ -266,10 +266,10 @@
             var row = $(this).closest('tr');
             var id = row.find('td:eq(0)').text();
             swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
+                title: "Bạn có chắc chắn muốn xóa?",
+                text: "Sau khi xóa bạn không thể khôi phục được dữ liệu này!",
                 icon: "warning",
-                buttons: true,
+                buttons: ["Hủy bỏ", "Xóa"],
                 dangerMode: true,
             })
             .then((willDelete) => {
@@ -279,14 +279,14 @@
                         url: route('admin.product.destroy', {id: id}),
                         success: function (data) {
                             swal({
-                                title: "Success",
+                                title: "Thành công",
                                 icon: "success",
                                 timer: 2000,
                             });
                             product_table.ajax.reload();
                         },
                         error: function(xhr, status, error) {
-                            toastr.error(JSON.parse(xhr.responseText), 'Error!');
+                            toastr.error(JSON.parse(xhr.responseText), 'Có lỗi!');
                         }
                     });
                 }
@@ -311,12 +311,12 @@
                 error: function (xhr, status, error) {
                     var err = JSON.parse(xhr.responseText);
                     if (xhr.status == 403) {
-                        toastr.error(err, 'Error!');
+                        toastr.error(err, 'Có lỗi!');
                     }
                     else {
                         var errors = Object.entries(err.errors);
                         errors.forEach(function (value, index) {
-                            toastr.error(value[1][0], 'Error!');
+                            toastr.error(value[1][0], 'Có lỗi!');
                         });
                     }
                 }
@@ -363,7 +363,7 @@
                     product_table.ajax.reload(null, false);
                     $('#modal-product').modal('hide');
                     swal({
-                        title: "Success",
+                        title: "Thành công",
                         icon: "success",
                         timer: 2000,
                     });
@@ -372,12 +372,12 @@
                 error: function (xhr, status, error) {
                     var err = JSON.parse(xhr.responseText);
                     if (xhr.status == 403) {
-                        toastr.error(err, 'Error!');
+                        toastr.error(err, 'Có lỗi!');
                     }
                     else {
                         var errors = Object.entries(err.errors);
                         errors.forEach(function (value, index) {
-                            toastr.error(value[1][0], 'Error!');
+                            toastr.error(value[1][0], 'Có lỗi!');
                         });
                     }
                 },
