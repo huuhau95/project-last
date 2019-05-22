@@ -168,6 +168,10 @@ class ClientController extends Controller
         $dateTime = new \DateTime;
         date_default_timezone_set('Asia/Ho_Chi_Minh');
         $now = new \DateTime();
+        $total = 0;
+        foreach ($cart as $product) {
+            $total+=$product['item']['product_price']*$product['item']['quantity'];
+        }
         $order = $this->orderModel->create([
             'receiver' => $request->receiver,
             'user_id' => $id,
@@ -175,6 +179,7 @@ class ClientController extends Controller
             'order_place' => $request->place,
             'order_phone' => $request->phone,
             'order_email' => $request->email,
+            'total' => intval($total),
             'status' => 0,
             'note' => $request->note,
         ]);

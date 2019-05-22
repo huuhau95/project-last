@@ -256,7 +256,7 @@ class UserController extends Controller
     public function logoutUser()
     {
         Auth::logout();
-
+         Session::forget('cart');
         return redirect(route('client.index'));
     }
 

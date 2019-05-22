@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $total = array();
         $date = array();
-        $sql = OrderDetail::orderBy('created_at', 'asc')->groupBy(DB::raw('Date(created_at)'))->selectRaw('sum(product_price) as total , created_at')->get();
+        $sql = Order::orderBy('created_at', 'asc')->where("status", 1)->whereNotNull('created_at')->groupBy(DB::raw('Date(created_at)'))->selectRaw('sum(total) as total , created_at')->get();
         if (!empty($sql)) {
             foreach ($sql as $key => $value) {
             array_push($total, (int) $value->total);

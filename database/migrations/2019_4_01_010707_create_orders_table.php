@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->dateTime('order_time');
             $table->string('order_place');
             $table->string('order_phone');
+            $table->integer('total');
             $table->TinyInteger('status');
             $table->text('note')->nullable();
             $table->timestamps();

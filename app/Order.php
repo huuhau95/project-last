@@ -22,6 +22,7 @@ class Order extends Model
         'order_time',
         'order_email',
         'status',
+        'total',
         'note',
     ];
 

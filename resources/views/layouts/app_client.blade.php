@@ -340,7 +340,7 @@
                         timer: 3000,
                     });
                     $('#div-check-out').fadeOut();
-                    window.location.href = route('client.index');
+                    // window.location.href = route('client.index');
                 })
                 .fail(function (xhr, status, error) {
                     var err = JSON.parse(xhr.responseText);
