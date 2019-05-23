@@ -238,10 +238,10 @@ class UserController extends Controller
 
         if (Auth::attempt($data)) {
             if (Auth::user()->role_id == 3) {
-                return redirect(route('client.index'));
+                return redirect(route('client.index'))->with('success', 'Đăng nhập hệ thống thành công');
             }
 
-            return redirect()->route('admin.index');
+            return redirect()->route('admin.index')->with('success', 'Đăng nhập hệ thống thành công');
         }
 
         return back()->with('fail', 'Email hoặc mật khẩu không đúng !');
