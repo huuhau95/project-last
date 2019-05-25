@@ -90,16 +90,15 @@
                         <div class="form-group">
                             {!! Form::label('color', __('message.color'), ['class' => 'form-control-label']) !!}
                             <br>
-                            {!! Form::checkbox('color[]', 'Trắng', false, ['class' => 'shop-color', 'id' => 'trang']) !!} <label class="m-r-10">Trắng</label>
-                            {!! Form::checkbox('color[]', 'Đen', false, ['class' => 'shop-color', 'id' => 'den']) !!} <label class="m-r-10">Đen</label>
-                            {!! Form::checkbox('color[]', 'Đỏ', false, ['class' => 'shop-color', 'id' => 'do']) !!} <label class="m-r-10">Đỏ</label>
-                            {!! Form::checkbox('color[]', 'Xanh da trời', false, ['class' => 'shop-color', 'id' => 'xanhdatroi']) !!} <label class="m-r-10">Xanh da trời</label>
-                            {!! Form::checkbox('color[]', 'Vàng', false, ['class' => 'shop-color', 'id' => 'vang']) !!} <label class="m-r-10">Vàng</label>
+                            <div id="box-color" class="m-b-10">
+                                {!! Form::text('color[]', null, ['class' => 'form-control col-md-10 m-b-10', 'placeholder' => 'Màu sắc', 'id' => 'color-first']) !!}
+                            </div>
+                            <button class="btn btn-primary" id="add-color">Thêm màu</button>
                         </div>
                         <div class="form-group">
                             {!! Form::label('image', __('message.image'), ['class' => 'form-control-label']) !!}
                             {!! Form::file('image', ['id' => 'image', 'class' => 'col-md-10',
-                            'required' => 'required', ' id' => 'image', 'name'=> 'image[]', 'multiple']) !!}
+                            ' id' => 'image', 'name'=> 'image[]', 'multiple']) !!}
                         </div>
                         <div class="form-group">
                             <label for="category_id" class="form-control-label">Category</label>
@@ -250,6 +249,7 @@
             $(".img-fluid").html("");
             $(".shop-size").prop('checked', false);
             $(".shop-color").prop('checked', false);
+            $("#box-color").html('');
             $('#action').val('Update');
             var row = $(this).closest('tr');
             var id = row.find('td:eq(0)').text();
@@ -265,32 +265,16 @@
                     }
 
                     var size = JSON.parse(data.size);
-                    for (var i = 0; i <= size.length; i++) {
+                    for (var i = 0; i < size.length; i++) {
                         $('#' + size[i]).prop('checked', true);
                     }
 
                     var color = JSON.parse(data.color);
-                    for (var i = 0; i <= color.length; i++) {
-                        switch(color[i]) {
-                            case 'Trắng':
-                                $('#trang').prop('checked', true);
-                                break;
-                            case 'Đen':
-                                $('#den').prop('checked', true);
-                                break;
-                            case 'Đỏ':
-                                $('#do').prop('checked', true);
-                                break;
-                            case 'Xanh da trời':
-                                $('#xanhdatroi').prop('checked', true);
-                                break;
-                            case 'Vàng':
-                                $('#vang').prop('checked', true);
-                                break;
-                            default:
-                                break;
-                        }
-                        
+                    for (var i = 0; i < color.length; i++) {
+                        var idColor = i == 0 ? 'color-first' : '';
+                        var updateColorElement = '<input name="color[]" value="'+ color[i] +'" class="form-control col-md-10 m-b-10" placeholder="Màu sắc" id="'+ idColor +'" />';
+                        debugger; 
+                        $("#box-color").append(updateColorElement);
                     }
 
                     $('#id').val(data.id);
@@ -433,6 +417,14 @@
                     }
                 },
             });
+        });
+
+        $('#add-color').click(function (event) {
+            event.preventDefault();
+            var colorElement = $("#color-first");
+
+            var newColorElement = colorElement.clone().removeAttr('id').val('');
+            $('#box-color').append(newColorElement);
         });
     });
 </script>

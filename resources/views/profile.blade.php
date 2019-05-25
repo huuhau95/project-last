@@ -1,96 +1,100 @@
 @extends('layouts.app_client')
 
 @section('content')
-    <div class="container margin_60_35">
-        <div class="row">
-            {!! Form::open(['method' => 'post', 'id' => 'form_update', 'files' => true]) !!}
-            <div class="col-md-4 col-sm-4">
-                <div class="indent_title_in">
-                    <h3></h3>
+    <!-- section -->
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                {!! Form::open(['method' => 'post', 'id' => 'form_update', 'files' => true]) !!}
+                <div class="col-md-1"></div>
+                <div class="col-md-3">
+                    <label for="avatar">
+                        @if ($user->image)
+                            <img class="img-circle img-avatar" height="200px"
+                                src="{{ asset(config('asset.image_path.avatar') . $user->image) }}">
+                        @else
+                            <img class="img-circle img-avatar" height="200px" src="{{ asset('images/default.jpeg') }}">
+                        @endif
+                    </label>
+                    {!! Form::file('avatar', ['id' => 'avatar', 'class' => 'hidden d-none']) !!}
                 </div>
-                <label for="avatar">
-                    @if ($user->image)
-                        <img class="img-circle img-avatar" height="300px"
-                            src="{{ asset(config('asset.image_path.avatar') . $user->image) }}">
-                    @else
-                        <img class="img-circle img-avatar" height="300px" src="{{ asset('images/default.jpeg') }}">
-                    @endif
-                </label>
-                {!! Form::file('avatar', ['id' => 'avatar', 'class' => 'hidden d-none']) !!}
-            </div>
-            <div class="col-md-8 col-sm-8">
-                <div class="indent_title_in">
-                    <h3><i class="icon-user"></i> {{ __('message.info') }}</h3>
-                </div>
-                <div class="wrapper_indent">
-                    <div class="form-group">
-                        {!! Form::label('name', __('message.name')) !!}
+                <div class="col-md-6">
+                    <div class="billing-details">
+                        <div class="section-title">
+                            <h3 class="title">Thông tin cá nhân</h3>
+                        </div>
                         {!! Form::hidden('id', $user->id, ['d-none', 'id' => 'id']) !!}
-                        {!! Form::text('name', $user->name, ['class' => 'form-control', 'placeholder' => 'Họ và tên']) !!}
-                        @if ($errors->has('name'))
-                            <span class="text-danger" role="alert">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
+                        <div class="form-group">
+                            {!! Form::text('name', $user->name, ['class' => 'input', 'placeholder' => 'Họ và tên']) !!}
+                            @if ($errors->has('name'))
+                                <span class="text-danger" role="alert">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            {!! Form::text('email', $user->email, ['class' => 'input', 'placeholder' => 'Email']) !!}
+                            @if ($errors->has('email'))
+                                <span class="text-danger" role="alert">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            {!! Form::text('address', $user->address, ['class' => 'input', 'placeholder' => 'Địa chỉ']) !!}
+                            @if ($errors->has('address'))
+                                <span class="text-danger" role="alert">
+                                <strong>{{ $errors->first('address') }}</strong>
+                            </span>
                         @endif
+                        </div>
+                        <div class="form-group">
+                            {!! Form::text('phone', $user->phone, ['class' => 'input', 'placeholder' => 'Số điện thoại']) !!}
+                            @if ($errors->has('phone'))
+                                <span class="text-danger" role="alert">
+                                <strong>{{ $errors->first('phone') }}</strong>
+                            </span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <div class="input-checkbox">
+                                <input type="checkbox" id="changepass">
+                                <label class="font-weak" for="changepass">Thay đổi mật khẩu?</label>
+                                <div class="caption">
+                                    <div class="form-group">
+                                        {!! Form::password('password', ['class' => 'input', 'id' => 'password1', 'placeholder' => 'Mật khẩu mới']) !!}
+                                        @if ($errors->has('password'))
+                                            <span class="text-danger" role="alert">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+                                    <div class="form-group">
+                                        {!! Form::password('re_password', ['class' => 'input', 'id' => 'password2', 'placeholder' => 'Nhập lại mật khẩu mới']) !!}
+                                        @if ($errors->has('re_password'))
+                                            <span class="text-danger" role="alert">
+                                            <strong>{{ $errors->first('re_password') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            {!! Form::button(__('message.update'), ['class' => 'btn primary-btn btnSubmit']) !!}
+                        </div>
                     </div>
-                    <div class="form-group">
-                        {!! Form::label('email', __('message.email')) !!}
-                        {!! Form::text('email', $user->email, ['class' => 'form-control', 'placeholder' => 'Email']) !!}
-                        @if ($errors->has('email'))
-                            <span class="text-danger" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('address', __('message.address')) !!}
-                        {!! Form::text('address', $user->address, ['class' => 'form-control', 'placeholder' => 'Địa chỉ']) !!}
-                        @if ($errors->has('address'))
-                            <span class="text-danger" role="alert">
-                            <strong>{{ $errors->first('address') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('phone', __('message.phone')) !!}
-                        {!! Form::text('phone', $user->phone, ['class' => 'form-control', 'placeholder' => 'Số điện thoại']) !!}
-                        @if ($errors->has('phone'))
-                            <span class="text-danger" role="alert">
-                            <strong>{{ $errors->first('phone') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                    {!! Form::button(__('message.update'), ['class' => 'btn btnSubmit']) !!}
-                </div><!-- End wrapper_indent -->
-                <hr>
-                <div class="indent_title_in">
-                    <h3><i class="icon_lock_alt"></i> {{ __('message.password.change') }}</h3>
                 </div>
-                <div class="wrapper_indent">
-                    <div class="form-group">
-                        {!! Form::label('password', __('message.password.change')) !!}
-                        {!! Form::password('password', ['class' => 'form-control', 'id' => 'password1']) !!}
-                        @if ($errors->has('password'))
-                            <span class="text-danger" role="alert">
-                            <strong>{{ $errors->first('password') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('re_password', __('message.password.confirm')) !!}
-                        {!! Form::password('re_password', ['class' => 'form-control', 'id' => 'password2']) !!}
-                        @if ($errors->has('re_password'))
-                            <span class="text-danger" role="alert">
-                            <strong>{{ $errors->first('re_password') }}</strong>
-                        </span>
-                        @endif
-                    </div>
-                    {!! Form::button(__('message.update'), ['class' => 'btn btnSubmit']) !!}
-                </div>
+                <div class="col-md-2"></div>
+                {!! Form::close() !!}
             </div>
-            {!! Form::close() !!}
+            <!-- /row -->
         </div>
+        <!-- /container -->
     </div>
+    <!-- /section -->
 @endsection
 
 

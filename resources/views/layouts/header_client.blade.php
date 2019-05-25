@@ -60,7 +60,7 @@
                 <div class="pull-left">
                     <!-- Logo -->
                     <div class="header-logo">
-                        <a class="logo" href="#">
+                        <a class="logo" href="{{ route('client.index') }}">
                             <img src="{{ asset('images/logo.png') }}" alt="">
                         </a>
                     </div>

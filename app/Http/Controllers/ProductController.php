@@ -131,7 +131,7 @@ class ProductController extends Controller
             'discount' => $request->discount,
             'selling' => $request->selling,
             'size' => json_encode($request->size),
-            'color' => json_encode($request->color),
+            'color' => json_encode(array_filter($request->color)),
         ], $id);
 
         if($request->hasFile('image')) {

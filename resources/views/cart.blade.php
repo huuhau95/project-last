@@ -9,7 +9,7 @@
 <div id="breadcrumb">
   <div class="container">
     <ul class="breadcrumb">
-      <li><a href="/">Trang chủ</a></li>
+      <li><a href="{{ route('client.index') }}">Trang chủ</a></li>
       <li class="active">Đặt hàng</li>
     </ul>
   </div>
@@ -74,7 +74,7 @@
             <div class="col-md-4">
               <div class="billing-details">
                 @if(!Auth::check())
-                <p>Bạn đã là một khách hàng ? <a href="#">Đăng nhập</a></p>
+                <p>Bạn đã là một khách hàng ? <a href="{{ route('client.login') }}">Đăng nhập</a></p>
                 @endif
                 <div class="section-title">
                   <h3 class="title">Thông tin người nhận</h3>
