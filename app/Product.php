@@ -21,6 +21,8 @@ class Product extends Model
         'selling',
         'category_id',
         'quantity',
+        'size',
+        'color',
     ];
 
     protected $dates = ['deleted_at'];

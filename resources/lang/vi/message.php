@@ -167,6 +167,8 @@ return [
         'note' => 'Ghi chú',
         'processed' => 'Đã giao',
         'unprocessed' => 'Chưa giao',
+        'received' => 'Nhận đơn đặt hàng',
+        'delivery' => 'Đang giao hàng',
         'canceled' => 'Hủy',
     ],
     //Order Detail
@@ -198,6 +200,8 @@ return [
     'discount' => 'Giảm giá',
     'brief' => 'Tóm tắt',
     'description' => 'Mô tả',
+    'size' => 'Kích thước: ',
+    'color' => 'Màu sắc: ',
 
     'image' => 'Ảnh',
     //Feedback

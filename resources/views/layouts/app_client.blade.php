@@ -297,27 +297,36 @@
             event.preventDefault();
             var key = $(this).attr('data-id');
             var quantity = $(this).val();
-            $.ajax({
-                url: route('user.cart.increase'),
-                type: 'post',
-                dataType: '',
-                cache: false,
-                data: {
-                    'key': key,
-                    'quantity': quantity
-                },
-            })
-            .done(function () {
+            if (quantity <= 0 || quantity > 10) {
                 swal({
-                    title: "Cập nhật giỏ hàng thành công",
-                    icon: "success",
-                    timer: 2000,
+                    title: "Sản phẩm mua phải có số lượng lớn hơn 0 và nhỏ hơn 10",
+                    icon: "error",
+                    timer: 3000,
                 });
-                location.reload();
-            })
-            .fail(function () {
-                console.log("error");
-            })
+                setTimeout(location.reload(), 3000);
+            } else {
+                $.ajax({
+                    url: route('user.cart.increase'),
+                    type: 'post',
+                    dataType: '',
+                    cache: false,
+                    data: {
+                        'key': key,
+                        'quantity': quantity
+                    },
+                })
+                .done(function () {
+                    swal({
+                        title: "Cập nhật giỏ hàng thành công",
+                        icon: "success",
+                        timer: 2000,
+                    });
+                    location.reload();
+                })
+                .fail(function () {
+                    console.log("error");
+                })
+            }
         });
 
         //check out cart
@@ -340,7 +349,7 @@
                         timer: 3000,
                     });
                     $('#div-check-out').fadeOut();
-                    // window.location.href = route('client.index');
+                    window.location.href = route('client.index');
                 })
                 .fail(function (xhr, status, error) {
                     var err = JSON.parse(xhr.responseText);

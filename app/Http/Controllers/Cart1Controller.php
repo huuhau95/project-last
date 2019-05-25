@@ -63,6 +63,9 @@ class Cart1Controller extends Controller
         if ($request->quantity <= 0) {
            $request->quantity = 1;
         }
+        if ($request->quantity > 10) {
+           $request->quantity = 10;
+        }
         $cart->update_cart($request->key, $request->quantity);
 
         return redirect()->route('client.showCart');

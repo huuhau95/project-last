@@ -2887,6 +2887,10 @@ header .form-inline .search-form.close {
     color: #fff;
 }
 
+.m-r-10 {
+    margin-right: 20px !important;
+}
+
 @media (max-width: 1368px) {
     .content {
         padding: 0 15px;

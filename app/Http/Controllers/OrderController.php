@@ -7,6 +7,7 @@ use App\OrderDetail;
 use App\Image;
 use Illuminate\Http\Request;
 use App\Repositories\Repository;
+use Illuminate\Support\Facades\Response;
 use Auth;
 
 class OrderController extends Controller
@@ -131,11 +132,22 @@ class OrderController extends Controller
     public function changStatus(Request $request)
     {
         $order = Order::findOrFail($request->id);
+
         if ($order->status == 1 || $order->status == -1) {
-            return Response::json(__('Order can not be change'), 500);
+            return Response::json(__('Không thể sửa order'), 500);
+        } else if ($order->admin_id != 0) {
+            if (Auth::user()->id == $order->admin_id) {
+                $this->orderModel->update([
+                    'status' => $request->status,
+                ], $request->id);
+            } else {
+                return Response::json(__('Đã có người nhận đơn hàng này'), 403);
+            }
+        } else {
+            $this->orderModel->update([
+                'status' => $request->status,
+                'admin_id' => Auth::user()->id,
+            ], $request->id);
         }
-        $this->orderModel->update([
-            'status' => $request->status,
-        ], $request->id);
     }
 }
