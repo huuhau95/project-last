@@ -10,7 +10,7 @@
     <div id="breadcrumb">
         <div class="container">
             <ul class="breadcrumb">
-                <li><a href="#">Trang chủ</a></li>
+                <li><a href="{{ route('client.index') }}">Trang chủ</a></li>
                 <li class="active">Đăng ký</li>
             </ul>
         </div>

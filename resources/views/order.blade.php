@@ -38,6 +38,12 @@
                                             {{ 'Đã hủy' }}
                                             @break
                                             @case(1)
+                                            {{ 'Đã giao hàng' }}
+                                            @break
+                                            @case(2)
+                                            {{ 'Người giao hàng đã nhận đơn' }}
+                                            @break
+                                            @case(3)
                                             {{ 'Đang giao hàng' }}
                                             @break
                                             @default
