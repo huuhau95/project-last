@@ -65,18 +65,36 @@
                         <div class="form-group">
                             {!! Form::label('name', __('message.name'), ['class' => 'form-control-label']) !!}
                             {!! Form::text('name', null, ['class' => 'form-control col-md-10',
-                            'required' => 'required', ' id' => 'name', 'placeholder' => 'Name',
+                            'required' => 'required', ' id' => 'name', 'placeholder' => 'Tên sản phẩm',
                             'autocomplete' => 'off']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('price', __('message.price'), ['class' => 'form-control-label']) !!}
                             {!! Form::number('price', null, ['class' => 'form-control col-md-10',
-                            'required' => 'required', ' id' => 'price', 'placeholder' => 'Price']) !!}
+                            'required' => 'required', ' id' => 'price', 'placeholder' => 'Giá']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('discount', __('message.discount'), ['class' => 'form-control-label']) !!}
                             {!! Form::number('discount', null, ['class' => 'form-control col-md-10',
-                            'required' => 'required', ' id' => 'discount', 'placeholder' => 'Discount']) !!}
+                            'required' => 'required', ' id' => 'discount', 'placeholder' => 'Giảm giá']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('size', __('message.size'), ['class' => 'form-control-label']) !!}
+                            <br>
+                            {!! Form::checkbox('size[]', 'S', false, ['class' => 'shop-size', 'id' => 'S']) !!} <label class="m-r-10">S</label>
+                            {!! Form::checkbox('size[]', 'M', false, ['class' => 'shop-size', 'id' => 'M']) !!} <label class="m-r-10">M</label>
+                            {!! Form::checkbox('size[]', 'L', false, ['class' => 'shop-size', 'id' => 'L']) !!} <label class="m-r-10">L</label>
+                            {!! Form::checkbox('size[]', 'XL', false, ['class' => 'shop-size', 'id' => 'XL']) !!} <label class="m-r-10">XL</label>
+                            {!! Form::checkbox('size[]', 'XXL', false, ['class' => 'shop-size', 'id' => 'XXL']) !!} <label class="m-r-10">XXL</label>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('color', __('message.color'), ['class' => 'form-control-label']) !!}
+                            <br>
+                            {!! Form::checkbox('color[]', 'Trắng', false, ['class' => 'shop-color', 'id' => 'trang']) !!} <label class="m-r-10">Trắng</label>
+                            {!! Form::checkbox('color[]', 'Đen', false, ['class' => 'shop-color', 'id' => 'den']) !!} <label class="m-r-10">Đen</label>
+                            {!! Form::checkbox('color[]', 'Đỏ', false, ['class' => 'shop-color', 'id' => 'do']) !!} <label class="m-r-10">Đỏ</label>
+                            {!! Form::checkbox('color[]', 'Xanh da trời', false, ['class' => 'shop-color', 'id' => 'xanhdatroi']) !!} <label class="m-r-10">Xanh da trời</label>
+                            {!! Form::checkbox('color[]', 'Vàng', false, ['class' => 'shop-color', 'id' => 'vang']) !!} <label class="m-r-10">Vàng</label>
                         </div>
                         <div class="form-group">
                             {!! Form::label('image', __('message.image'), ['class' => 'form-control-label']) !!}
@@ -217,6 +235,8 @@
         $('#create-product').click(function (event) {
             event.preventDefault();
             $('#form-group-id').hide();
+            $(".shop-size").prop('checked', false);
+            $(".shop-color").prop('checked', false);
             loadSelectCategory();
             $('.image_review_create').hide();
             $('#form-product')[0].reset();
@@ -228,6 +248,8 @@
             $('#form-group-id').show();
             $( "#image" ).val("")
             $(".img-fluid").html("");
+            $(".shop-size").prop('checked', false);
+            $(".shop-color").prop('checked', false);
             $('#action').val('Update');
             var row = $(this).closest('tr');
             var id = row.find('td:eq(0)').text();
@@ -241,7 +263,36 @@
                     }else{
                         $("#selling").prop('checked', false);
                     }
-                    console.log(data)
+
+                    var size = JSON.parse(data.size);
+                    for (var i = 0; i <= size.length; i++) {
+                        $('#' + size[i]).prop('checked', true);
+                    }
+
+                    var color = JSON.parse(data.color);
+                    for (var i = 0; i <= color.length; i++) {
+                        switch(color[i]) {
+                            case 'Trắng':
+                                $('#trang').prop('checked', true);
+                                break;
+                            case 'Đen':
+                                $('#den').prop('checked', true);
+                                break;
+                            case 'Đỏ':
+                                $('#do').prop('checked', true);
+                                break;
+                            case 'Xanh da trời':
+                                $('#xanhdatroi').prop('checked', true);
+                                break;
+                            case 'Vàng':
+                                $('#vang').prop('checked', true);
+                                break;
+                            default:
+                                break;
+                        }
+                        
+                    }
+
                     $('#id').val(data.id);
                     $('#name').val(data.name);
                     $('#price').val(data.price);

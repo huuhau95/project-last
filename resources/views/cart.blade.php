@@ -10,7 +10,7 @@
   <div class="container">
     <ul class="breadcrumb">
       <li><a href="/">Trang chủ</a></li>
-      <li class="active">Thanh toán</li>
+      <li class="active">Đặt hàng</li>
     </ul>
   </div>
 </div>

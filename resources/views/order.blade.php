@@ -46,7 +46,7 @@
                                         @endswitch
                                         <input type="text" id="status_order" hidden value="{{ $order->status }}">
                                     </td>
-                                    <td class="total text-center"><strong class="primary-color">$32.50</strong></td>
+                                    <td class="total text-center"><strong class="primary-color">{{ number_format($order->total) }}</strong></td>
                                     <td class="text-right">
                                         <a class="main-btn icon-btn" title="Xem chi tiết" id="detail_order">
                                             <i class="fa fa-eye"></i>

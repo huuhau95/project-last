@@ -47,6 +47,8 @@
                         <div class="col-5">
                             <select name="status" id="status" class="form-control disabled">
                                 <option value="1">{{ __('message.order_title.processed') }}</option>
+                                <option value="3">{{ __('message.order_title.delivery') }}</option>
+                                <option value="2">{{ __('message.order_title.received') }}</option>
                                 <option value="0">{{ __('message.order_title.unprocessed') }}</option>
                                 <option value="-1">{{ __('message.order_title.canceled') }}</option>
                             </select>
@@ -112,7 +114,7 @@
                         data: 'status',
                         name: 'status',
                         render: function(data) {
-                            return data == 1 ? 'Processed' : (data == 0 ? 'Unprocessed' : 'Canceled');
+                            return data == 1 ? 'Đã giao' : (data == 0 ? 'Chưa giao' : (data == 2 ? 'Đã nhận đơn hàng' : (data == 3 ? 'Đang giao hàng' : 'Đã hủy')));
                         }
                     },
                     {
@@ -187,10 +189,9 @@
                 var order_id = $(this).attr('data-id');
                 var status = $(this).val();
                 swal({
-                    title: "Are you sure?",
-                    text: "Once deleted, you will not be able to recover this imaginary file!",
+                    title: "Bạn có chắc chắn muốn sửa đơn hàng này?",
                     icon: "warning",
-                    buttons: true,
+                    buttons: ["Hủy bỏ", "Sửa"],
                     dangerMode: true,
                 })
                 .then((willDelete) => {
@@ -199,19 +200,21 @@
                             url: route('admin.order.change_status'),
                             type: 'post',
                             data: {id: order_id, status: status},
-                        })
-                        .done(function() {
-                            $('#modal-order_detail').modal('hide');
-                            order_table.ajax.reload(null, false);
-                            swal({
-                                title: "Success",
-                                icon: "success",
-                                timer: 2000,
-                            });
-                        })
-                        .fail(function() {
-                            console.log("error");
-                        })
+                            success: function (data) {
+                                swal({
+                                    title: "Thành công",
+                                    icon: "success",
+                                    timer: 2000,
+                                });
+                                $('#modal-order_detail').modal('hide');
+                                order_table.ajax.reload();
+                            },
+                            error: function(xhr, status, error) {
+                                var err = JSON.parse(xhr.responseText);
+                                console.log(err);
+                                toastr.error(err, 'Có lỗi!');
+                            }
+                        });
                     }
                 })
             });

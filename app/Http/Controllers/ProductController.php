@@ -68,7 +68,8 @@ class ProductController extends Controller
             'description' => $request->description,
             'discount' => $request->discount,
             'selling' => $request->selling,
-
+            'size' => json_encode($request->size),
+            'color' => json_encode($request->color),
         ]);
                 if($request->hasFile('image')) {
                     if($product) {
@@ -129,6 +130,8 @@ class ProductController extends Controller
             'description' => $request->description,
             'discount' => $request->discount,
             'selling' => $request->selling,
+            'size' => json_encode($request->size),
+            'color' => json_encode($request->color),
         ], $id);
 
         if($request->hasFile('image')) {

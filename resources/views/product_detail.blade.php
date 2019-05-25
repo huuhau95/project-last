@@ -38,22 +38,22 @@
               <p>{{ $product->brief }}</p>
               <form class="form_order" novalidate="novalidate" accept-charset="utf-8">
               <div class="product-options">
+                @if($product->size)
                 <span class="text-uppercase">Size:</span>
                 <select name="size" id="hidden_size">
-                  <option value="XS" selected>XS</option>
-                  <option value="S">S</option>
-                  <option value="M">M</option>
-                  <option value="XL">XL</option>
-                  <option value="XXL">XXL</option>
+                  @foreach(json_decode($product->size) as $size)
+                    <option value="{{$size}}">{{$size}}</option>
+                  @endforeach
                 </select>
+                @endif
+                @if($product->color)
                 <span class="text-uppercase">Màu sắc:</span>
                 <select name="color" id="hidden_color">
-                  <option value="Đỏ" selected>Đỏ</option>
-                  <option value="Trắng">Trắng</option>
-                  <option value="Vàng">Vàng</option>
-                  <option value="Xanh">Xanh</option>
-                  <option value="Đen">Đen</option>
+                  @foreach(json_decode($product->color) as $color)
+                    <option value="{{$color}}">{{$color}}</option>
+                  @endforeach
                 </select>
+                @endif
               </div>
               <div class="product-btns">
                 <div class="qty-input">
