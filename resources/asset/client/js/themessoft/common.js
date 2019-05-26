@@ -3,6 +3,7 @@
 **************************************************************************/
 jQuery(document).ready(function() {
     "use strict";
+    
      /* Navigation */
     jQuery("#nav > li").hover(function() {
         var el = jQuery(this).find(".level0-wrapper");

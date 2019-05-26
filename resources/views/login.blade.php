@@ -11,7 +11,7 @@
                             @csrf
                     <div class="col-md-6">
                         <div class="billing-details">
-                            <p>Bạn chưa có tài khoản ? <a href="#">Đăng ký</a></p>
+                            <p>Bạn chưa có tài khoản ? <a href="{{ route('client.register') }}">Đăng ký</a></p>
                             <div class="section-title">
                                 <h3 class="title">Đăng nhập tài khoản</h3>
                             </div>

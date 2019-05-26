@@ -40,8 +40,8 @@ class Cart1Controller extends Controller
     public function add(Request $request)
     {
         $product = Product::findOrFail($request->product);
-        $size = $request->size;
-        $color = $request->color;
+        $size = $request->size ? $request->size : '';
+        $color = $request->color ? $request->color : '';
 
         $image_main = Image::where('product_id', $request->product)
             ->orderBy('id', 'desc')->first();
