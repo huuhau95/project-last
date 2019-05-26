@@ -83,15 +83,6 @@ class ClientController extends Controller
         }])->findOrFail($id);
         return $product;
     }
-    public function comment(Request $request)
-    {
-        $feedback = new Feedback();
-        $feedback->user_id = Auth::id();
-        $feedback->product_id = $request->product_id;
-        $feedback->content = $request->comment;
-        $feedback->status = 0;
-        $feedback->save();
-    }
     public function orders()
     {
         if (Auth::check()) {
@@ -188,8 +179,8 @@ class ClientController extends Controller
                 'product_id' => $product['item']['product']->id,
                 'product_price' => $product['item']['product_price'],
                 'order_id' => $order->id,
-                'size' => $product['item']['size'],
-                'color' => $product['item']['color'],
+                'size' => $product['item']['size'] ? $product['item']['size'] : '',
+                'color' => $product['item']['color'] ? $product['item']['color'] : '',
                 'quantity' => $product['item']['quantity'],
                 'status' => 0,
             ]);
@@ -198,7 +189,7 @@ class ClientController extends Controller
         Session::forget('cart');
     }
     public function showProductByCate(Request $request){
-        $products = Product::where("category_id", $request->category_id)->paginate(9);;
+        $products = Product::where("category_id", $request->category_id)->paginate(8);;
         return view("product_list", compact('products', $products));
     }
     public function getContact(){

@@ -46,8 +46,12 @@
                       <td class="details" style="padding: 10px;">
                         <a href="{{ route('client.product.detail', ['id' => $cart['item']['product']->id]) }}">{{ $cart['item']['product']->name }}</a>
                         <ul>
+                          @if($cart['item']['size'])
                           <li><span>Size: {{ $cart['item']['size'] }}</span></li>
+                          @endif
+                          @if($cart['item']['color'])
                           <li><span>Màu: {{ $cart['item']['color'] }}</span></li>
+                          @endif
                         </ul>
                       </td>
                       <td class="price text-center"><strong>{{ number_format($cart['item']['product_price']) . ' ₫' }}</strong></td>

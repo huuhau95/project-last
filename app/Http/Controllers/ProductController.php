@@ -122,6 +122,11 @@ class ProductController extends Controller
         if(empty($request->selling)){
             $request->selling = 0;
         }
+        $color = null;
+        if (sizeof(array_filter($request->color)) > 0) {
+            $color = array_filter($request->color);
+        }
+        
         $product = $this->productModel->update([
             'name' => $request->name,
             'price' => $request->price,
@@ -131,7 +136,7 @@ class ProductController extends Controller
             'discount' => $request->discount,
             'selling' => $request->selling,
             'size' => json_encode($request->size),
-            'color' => json_encode(array_filter($request->color)),
+            'color' => json_encode($color),
         ], $id);
 
         if($request->hasFile('image')) {

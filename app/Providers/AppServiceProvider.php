@@ -78,7 +78,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('layouts/footer_client', function ($view) {
-            $categories = Category::all();
+            $categories = Category::orderBy('id', 'desc')->take(5)->get();
             $view->with(['categories'=>$categories]);
         });
     }

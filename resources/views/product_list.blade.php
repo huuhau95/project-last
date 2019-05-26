@@ -34,7 +34,7 @@
                         <!-- Product Single -->
                         @if(count($products))
                         @foreach($products as $product)
-                        <div class="col-md-3 col-sm-3 col-xs-6">
+                        <div class="col-md-3 col-sm-3 col-xs-6 product-equal-height">
                         <div class="product product-single">
                             <div class="product-thumb">
                                 <div class="product-label">

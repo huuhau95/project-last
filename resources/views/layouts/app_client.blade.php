@@ -297,7 +297,14 @@
             event.preventDefault();
             var key = $(this).attr('data-id');
             var quantity = $(this).val();
-            if (quantity <= 0 || quantity > 10) {
+            if (quantity <= 0) {
+                swal({
+                    title: "Sản phẩm mua phải có số lượng lớn hơn 0 và nhỏ hơn 10",
+                    icon: "error",
+                    timer: 3000,
+                });
+                setTimeout(location.reload(), 3000);
+            } else if (quantity > 10) {
                 swal({
                     title: "Sản phẩm mua phải có số lượng lớn hơn 0 và nhỏ hơn 10",
                     icon: "error",
@@ -344,7 +351,7 @@
                 })
                 .done(function () {
                     swal({
-                        title: "Thanh toán thành công !",
+                        title: "Đặt hàng thành công !",
                         icon: "success",
                         timer: 3000,
                     });
@@ -415,6 +422,16 @@
             event.preventDefault();
             location.href = route('client.filter');
         });
+
+        // product equal hieght
+        var highestBoxProduct = 0;
+        $('.product-equal-height', this).each(function(){
+            if($(this).height() > highestBoxProduct) {
+              highestBoxProduct = $(this).height(); 
+            }
+        });  
+                
+        $('.product-equal-height',this).height(highestBoxProduct);
     });
 
     </script>

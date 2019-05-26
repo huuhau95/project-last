@@ -38,7 +38,7 @@
               <p>{{ $product->brief }}</p>
               <form class="form_order" novalidate="novalidate" accept-charset="utf-8">
               <div class="product-options">
-                @if($product->size)
+                @if($product->size && $product->size != "null")
                 <span class="text-uppercase">Size:</span>
                 <select name="size" id="hidden_size">
                   @foreach(json_decode($product->size) as $size)
@@ -46,7 +46,7 @@
                   @endforeach
                 </select>
                 @endif
-                @if($product->color)
+                @if($product->color && $product->color != "null")
                 <span class="text-uppercase">Màu sắc:</span>
                 <select name="color" id="hidden_color">
                   @foreach(json_decode($product->color) as $color)
@@ -56,12 +56,8 @@
                 @endif
               </div>
               <div class="product-btns">
-                <div class="qty-input">
-                  <span class="text-uppercase">Số lượng: </span>
-                  <input class="input" id="hidden_quantity" type="number" disabled="" value="1">
-                </div>
                 <input class="hidden" name="product" id="hidden_id" type="hidden"  value="{{ $product->id }}">
-                <button class="primary-btn btnSubmitOrder add-to-cart btn-car " data-id="{{ $product->id }}" href="javascript::void(0)" type="button"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ hàng</button>
+                <button class="primary-btn btnSubmitOrder add-to-cart btn-car " data-id="{{ $product->id }}" href="javascript::void(0)" type="button"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ hàng</button>
               </div>
               </form>
 
