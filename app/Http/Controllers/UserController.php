@@ -45,13 +45,6 @@ class UserController extends Controller
 
     public function json()
     {
-        // if (!Redis::get('user:all')) {
-        //     // $name, $with from repository
-        //     $this->userModel->setRedisAll('user:all', ['role']);
-        // }
-
-        // // set true to return array
-        // $data = json_decode(Redis::get('user:all'), true);
 
         $data = User::all()->load('role');
 
