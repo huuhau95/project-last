@@ -68,31 +68,6 @@ class OrderController extends Controller
         return $orderDetails;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        $this->orderModel->update([
-            'receiver' => $request->receiver,
-            'order_phone' => $request->order_phone,
-            'order_place' => $request->order_place,
-            'note' => $request->note,
-            'status' => $request->status,
-        ], $id);
-
-        return redirect()->route('admin.order.edit', ['id' => $id]);
-    }
 
     /**
      * Remove the specified resource from storage.

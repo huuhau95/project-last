@@ -1,6 +1,5 @@
 <?php
 
-use App\Order;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +27,7 @@ function () {
 
 		Route::get('logout', 'UserController@logoutUser')->name('logout');
 
+		// route admin
 		Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
 				Route::get('index', 'HomeController@index')->name('admin.index');
@@ -109,6 +109,7 @@ function () {
 						Route::post('update/{slide}', 'SlideController@update')->name('admin.slide.update');
 
 						Route::get('destroy/{id}', 'SlideController@destroy')->name('admin.slide.destroy');
+						Route::get('json', 'SlideController@getCategorySelect')->name('admin.slide.json');
 
 					});
 
@@ -155,13 +156,12 @@ function () {
 
 						Route::get('detail/{id}', 'OrderController@showDetail')->name('admin.order.detail.json');
 
-						Route::post('update/{id}', 'OrderController@update')->name('admin.order.update');
-
 						Route::get('delete/{id}', 'OrderController@destroy')->name('admin.order.destroy');
 
 						Route::post('change-status', 'OrderController@changStatus')->name('admin.order.change_status');
 					});
 			});
+		//end admin
 
 		Route::group(['prefix' => 'user', 'middleware' => 'userLogin'], function () {
 
@@ -229,16 +229,4 @@ function () {
 		Route::post('favorite', 'ClientController@favorite')->name('client.favorite');
 
 		Route::post('checkout', 'ClientController@checkout')->name('client.checkout');
-
-		Route::get('demo', function () {
-				return Order::with(['orderDetails.product' => function ($query) {
-							$query->with(['images'                  => function ($query1) {
-										$query1->where('active', 1);
-									}]);
-						}])
-				->with('orderDetails.size')->with('orderDetails.toppings')
-				->where('id', '=', 1)
-				->orderBy('created_at', 'desc')
-				->first();
-			});
 	});

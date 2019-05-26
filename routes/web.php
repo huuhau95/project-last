@@ -157,8 +157,6 @@ Route::group(['middleware' => 'locale'], function() {
 
             Route::get('detail/{id}', 'OrderController@showDetail')->name('admin.order.detail.json');
 
-            Route::post('update/{id}', 'OrderController@update')->name('admin.order.update');
-
             Route::get('delete/{id}', 'OrderController@destroy')->name('admin.order.destroy');
 
             Route::post('change-status', 'OrderController@changStatus')->name('admin.order.change_status');
@@ -232,16 +230,4 @@ Route::group(['middleware' => 'locale'], function() {
     Route::post('favorite', 'ClientController@favorite')->name('client.favorite');
 
     Route::post('checkout', 'ClientController@checkout')->name('client.checkout');
-
-    Route::get('demo', function() {
-        return  Order::with(['orderDetails.product' => function($query) {
-            $query->with(['images' => function($query1) {
-                $query1->where('active', 1);
-            }]);
-        }])
-            ->with('orderDetails.size')->with('orderDetails.toppings')
-            ->where('id', '=', 1)
-            ->orderBy('created_at', 'desc')
-            ->first();
-    });
 });
