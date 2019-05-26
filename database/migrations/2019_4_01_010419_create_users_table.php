@@ -24,7 +24,6 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('role_id');
             $table->foreign('role_id')->references('id')->on('roles');
             $table->unsignedInteger('potential_id')->nullable();
-            $table->foreign('potential_id')->references('id')->on('potentials');
             $table->boolean('active')->default(0);
             $table->rememberToken();
             $table->timestamps();

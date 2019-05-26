@@ -103,7 +103,7 @@ class ClientController extends Controller
     }
     public function order_details($order_id)
     {
-        $orderDetails = OrderDetail::with('product', 'size', 'toppings')->where('order_id', $order_id)->get();
+        $orderDetails = OrderDetail::with('product')->where('order_id', $order_id)->get();
         return $orderDetails;
     }
     public function cancel_order($order_id)

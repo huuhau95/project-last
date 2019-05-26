@@ -23,7 +23,7 @@
                                     <th class="text-right"></th>
                                 </tr>
                             </thead>
-                            
+
                             <tbody>
                                 @if(count($orders))
                                 @foreach($orders as $order)
@@ -142,15 +142,9 @@
                             '<td width="20%">' +
                             '<img class="img-thumbnail" src="{{ asset(config('asset.image_path.product'). '2.jpg') }}">' +
                             '</td>' +
-                            '<td><p>' + element.product.name + '</p><p> Size: '+ element.size.name +'</p></td>' +
+                            '<td><p>' + element.product.name + '</p><p> Size: '+ element.size +'</p></td>' +
                             '<td width="46%">';
                         var price = element.product_price;
-                        element.toppings.forEach(function (element) {
-                            html += '<span style="padding:5px;display: inline-block;background-color: #F0F8FF;border-radius: 10px;margin-left: 5px;margin-bottom: 5px">' +
-                                element.name +
-                                '</span>';
-                            price += element.pivot.topping_price;
-                        });
                         html += '</td>' +
                             '<td width="13%">' + nf.format(price) + ' ₫' + '</td>' +
                             '</tr>';
