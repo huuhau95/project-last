@@ -118,7 +118,7 @@ Route::group(['middleware' => 'locale'], function() {
             Route::get('show/{id}', 'ContactController@show')->name('admin.contact.show');
             Route::get('index', 'ContactController@index')->name('admin.contact.index');
             Route::get('destroy/{id}', 'ContactController@destroy')->name('admin.contact.destroy');
-            Route::get('json', 'ContactController@getCategorySelect')->name('admin.contact.json');
+            Route::get('json', 'ContactController@getAllData')->name('admin.contact.json');
         });
 
         Route::group(['prefix' => 'topping'], function () {

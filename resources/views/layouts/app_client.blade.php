@@ -61,43 +61,6 @@
 
         var nf = new Intl.NumberFormat();
 
-        $('.btnBuy').click(function (event) {
-            event.preventDefault();
-            $('.modal-title').html("");
-            var id_sp = $(this).attr("data-id");
-            $.ajax({
-                url: route('client.product.detail.json', {id: id_sp}),
-                type: 'get',
-                dataType: '',
-                data: {},
-            })
-            .done(function (res) {
-                $('.modal-title').html(res.name);
-                $('#product_id_modal').val(res.id);
-            })
-            .fail(function () {
-                console.log("error");
-            })
-        });
-
-        $('.form_order').validate({
-            rules: {
-                size: 'required',
-            },
-            messages: {
-                size:{
-                    required: 'Choose Size',
-                },
-            },
-            errorPlacement: function(error, element) {
-                if (element.is(':radio')) {
-                    $("#error-size-index-add-cart").html( error );
-                } else {
-                    error.insertAfter( element );
-                }
-            }
-        });
-
         $('.btnSubmitOrder').click(function (event) {
             event.preventDefault();
             if ($('.form_order').valid()) {
@@ -120,67 +83,6 @@
                 })
             }
         });
-
-        $('#empty_cart_button').click(function (event) {
-            swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((willDelete) => {
-                if (willDelete) {
-                    $.ajax({
-                        url: route('user.cart.remove'),
-                        type: 'get',
-                        dataType: '',
-                        data: {},
-                    })
-                    .done(function () {
-                        console.log("success");
-                        window.location.href = route('client.showCart');
-                    })
-                    .fail(function () {
-                        console.log("error");
-                    })
-                    .always(function () {
-                        console.log("complete");
-                    });
-                }
-            })
-        });
-
-        $('#checkout').click(function (event) {
-            event.preventDefault();
-            var user_current = $(this).attr('data-user');
-            $.ajax({
-                url: route('client.cart'),
-                type: 'get',
-                dataType: '',
-                data: {},
-            })
-            .done(function (res) {
-                if (res.length !== 0) {
-                    var total_price = 0;
-                    res.forEach(function (element) {
-                        total_price += element.item_price;
-                    });
-                    if (user_current !== '') {
-                        var user = JSON.parse(user_current)
-                        $('#checkout-receiver').val(user.name);
-                        $('#checkout-place').val(user.address);
-                        $('#checkout-email').val(user.email);
-                        $('#checkout-phone').val(user.phone);
-                        var discount = user.potential ? user.potentials.discount : 0;
-                        total_price = total_price * (1 - discount / 100);
-                        $('.price_cart').html(nf.format(Math.ceil(total_price)));
-                    }
-                }
-            })
-            $('#div-check-out').fadeIn();
-        });
-
         $('.quantity').on('blur change', function(event) {
             event.preventDefault();
             var key = $(this).attr('data-id');
