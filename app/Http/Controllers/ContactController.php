@@ -73,15 +73,6 @@ class ContactController extends Controller
 
     public function getAllData()
     {
-        $Contacts = Contact::with(['images' => function ($query) {
-            $query->get();
-        }])->with('category')->get();
-
-        return Datatables::of($Contacts)->make(true);
-    }
-
-    public function getCategorySelect()
-    {
         $Contact = Contact::get();
 
         return datatables($Contact)->make(true);
