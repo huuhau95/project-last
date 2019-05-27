@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->string('receiver');
             $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->TinyInteger('admin_id');
             $table->dateTime('order_time');
             $table->string('order_place');
             $table->string('order_phone');
