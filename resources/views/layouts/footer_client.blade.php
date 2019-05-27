@@ -8,23 +8,13 @@
                     <div class="footer">
                         <!-- footer logo -->
                         <div class="footer-logo">
-                            <a class="logo" href="#">
+                            <a class="logo" href="{{ route('client.register') }}">
                     <img src="{{ asset('images/logo.png') }}" alt="">
                   </a>
                         </div>
                         <!-- /footer logo -->
 
-                        <p>E-shop là hệ thông cửa hàng thời trang đẹp nhất Hà Nội</p>
-
-                        <!-- footer social -->
-                        <ul class="footer-social">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                            <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                        </ul>
-                        <!-- /footer social -->
+                        <p>E-shop là hệ thông cửa hàng thời trang giá rẻ tốt nhất thị trường</p>
                     </div>
                 </div>
                 <!-- /footer widget -->
@@ -89,15 +79,15 @@
                 <div class="col-md-3 col-sm-6 col-xs-6">
                     <div class="footer">
                         <h3 class="footer-header">Hệ thống cửa hàng</h3>
-                        <p>Cửa hàng 1: 268 Tô Hiến Thành, Thành phố Thái Bình. ĐT: (036) 38 62 57 91</p>
+                        <p>Cửa hàng 1: 268 Tô Hiến Thành</p>
 
-                        <p>Cửa hàng 2: 40 Lê Văn Sỹ, Thành phố Thái Bình. ĐT: (036) 62 53 73 93</p>
+                        <p>Cửa hàng 2: 40 Lê Văn Sỹ</p>
 
-                        <p>Cửa hàng 3: 248B Phan Đình Phùng, Thành phố Thái Bình. ĐT: (036) 62 53 87 87</p>
+                        <p>Cửa hàng 3: 248B Phan Đình Phùng</p>
 
-                        <p>Cửa hàng 4: 259 Nguyễn Trãi, Thành phố Thái Bình. ĐT: (036) 62 913 241</p>
+                        <p>Cửa hàng 4: 259 Nguyễn Trãi</p>
 
-                        <p>Cửa hàng 5: 664 Quang Trung, Thành phố Thái Bình. ĐT: (036) 62 99 22 33</p>
+                        <p>Cửa hàng 5: 664 Quang Trung</p>
                     </div>
                 </div>
                 <!-- /footer subscribe -->

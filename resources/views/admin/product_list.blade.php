@@ -263,17 +263,25 @@
                     }else{
                         $("#selling").prop('checked', false);
                     }
-
-                    var size = JSON.parse(data.size);
-                    for (var i = 0; i < size.length; i++) {
-                        $('#' + size[i]).prop('checked', true);
+                    if (data.size && data.size != "null") {
+                        var size = JSON.parse(data.size);
+                        for (var i = 0; i < size.length; i++) {
+                            $('#' + size[i]).prop('checked', true);
+                        }
                     }
+                    
+                    if (data.size && data.color != "null") {
+                        var color = Object.values(JSON.parse(data.color));
+                        debugger;
+                        for (var i = 0; i < color.length; i++) {
+                            var idColor = i == 0 ? 'color-first' : '';
+                            var updateColorElement = '<input name="color[]" value="'+ color[i] +'" class="form-control col-md-10 m-b-10" placeholder="Màu sắc" id="'+ idColor +'" />';
 
-                    var color = JSON.parse(data.color);
-                    for (var i = 0; i < color.length; i++) {
-                        var idColor = i == 0 ? 'color-first' : '';
-                        var updateColorElement = '<input name="color[]" value="'+ color[i] +'" class="form-control col-md-10 m-b-10" placeholder="Màu sắc" id="'+ idColor +'" />';
-                        debugger; 
+                            $("#box-color").append(updateColorElement);
+                        }
+                    } else {
+                        var updateColorElement = '<input name="color[]" value="" class="form-control col-md-10 m-b-10" placeholder="Màu sắc" id="color-first" />';
+
                         $("#box-color").append(updateColorElement);
                     }
 

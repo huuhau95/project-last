@@ -165,8 +165,14 @@
                             '<td width="15%">' +
                             '<img class="img-thumbnail" src="' + base_url_image + image + '">' +
                             '</td>' +
-                            '<td><p>' + element.product.name + '</p><p> Size: '+ element.size +'</p> Màu: '+ element.color +'</p></p> Số lượng: '+ element.quantity +'</p></td>' +
-                            '<td width="44%">';
+                            '<td><p>' + element.product.name + '</p>';
+                        if (element.size) {
+                            html += '<p> Size: '+ element.size +'</p>';
+                        } 
+                        if (element.color) {
+                            html += '</p> Màu sắc: '+ element.color +'</p>'
+                        }
+                        html += '<p> Số lượng: '+ element.quantity +'</p></td>';
                         var price = element.product_price * element.quantity;
                         html += '</td>' +
                             '<td width="20%"> Price: ' + nf.format(price) + ' ₫' + '</td>' +
